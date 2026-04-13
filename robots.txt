@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fabianaadvocacia.com.br/sitemap.xml
