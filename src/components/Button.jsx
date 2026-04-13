@@ -18,6 +18,7 @@ const Button = ({
   const sizes = {
     sm: "px-6 py-2.5 text-sm",
     md: "px-8 py-4 text-lg",
+    lg: "px-10 py-5 text-xl",
   };
 
   const pulseElement = pulse && (
