@@ -326,7 +326,7 @@ function App() {
             <img 
               src={heroImage} 
               alt="Advogada Dra. Fabiana Golembiewski" 
-              className="absolute -top-[10%] left-0 w-full h-[120%] object-cover parallax-img"
+              className="absolute -top-[10%] left-0 w-full h-[120%] object-cover object-top parallax-img"
               loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -493,7 +493,7 @@ function App() {
         <section className="py-0 bg-white">
           <div className="flex flex-col md:flex-row">
             <div className="w-full md:w-1/2 min-h-[500px] relative overflow-hidden parallax-container">
-              <img src={bioImage} alt="Dra. Fabiana" loading="lazy" className="absolute -top-[10%] left-0 w-full h-[120%] object-cover parallax-img" />
+              <img src={bioImage} alt="Dra. Fabiana" loading="lazy" className="absolute -top-[10%] left-0 w-full h-[120%] object-cover object-top parallax-img" />
             </div>
             <div className="w-full md:w-1/2 p-10 lg:p-20 flex flex-col justify-center">
               <div className="inline-block px-4 py-1.5 bg-brand-light border border-brand-medium rounded-full text-xs font-bold text-brand-accent uppercase tracking-widest mb-6 w-max">
