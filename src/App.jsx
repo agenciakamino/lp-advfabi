@@ -507,42 +507,41 @@ function App() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 authority-cards">
                 <div className="flex items-center gap-4 p-5 bg-brand-light rounded-xl border border-brand-medium/50">
                   <Icon name="MapPin" className="text-brand-accent" size={28} />
-                  <div><p className="font-bold text-brand-dark">Escritório Físico</p><p className="text-sm text-[#5A514D]">Joinville, SC</p></div>
+                  <div><p className="font-bold text-brand-dark">Sede em Joinville/SC</p><p className="text-sm text-[#5A514D]">Atendimento em todo o Brasil</p></div>
                 </div>
                 <div className="flex items-center gap-4 p-5 bg-brand-light rounded-xl border border-brand-medium/50">
-                  <Icon name="CreditCard" className="text-brand-accent" size={28} />
-                  <div><p className="font-bold text-brand-dark">Acesso Facilitado</p><p className="text-sm text-[#5A514D]">Em até 10x sem juros</p></div>
+                  <Icon name="ShieldCheck" className="text-brand-accent" size={28} />
+                  <div><p className="font-bold text-brand-dark">Especialista em Saúde</p><p className="text-sm text-[#5A514D]">Foco total em reparadoras</p></div>
                 </div>
               </div>
               <WhatsAppButton text="Falar com a Dra. Fabiana" icon />
-            </div>
-          </div>
-        </section>
+              </div>
+              </div>
+              </section>
 
-        {/* SESSÃO 7: PROVA SOCIAL */}
-        <section className="py-24 px-6 bg-brand-light">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-center text-brand-dark mb-4">Vozes de quem já venceu</h2>
-            <p className="text-center text-[#5A514D] text-lg mb-16">Histórias reais de pacientes que não aceitaram o "Não" do plano.</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 reviews-grid">
+              {/* SESSÃO 7: PROVA SOCIAL */}
+              <section className="py-24 px-6 bg-brand-light">
+              <div className="max-w-6xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-center text-brand-dark mb-4">Vozes de quem já venceu</h2>
+              <p className="text-center text-[#5A514D] text-lg mb-16">Histórias reais de pacientes que não aceitaram o "Não" do plano.</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 reviews-grid">
               <ReviewCard name="Juliana S." time="1 mês atrás" text="Estava há 2 anos tentando liberar a reparadora. A Dra. pegou meu caso e em menos de um mês o juiz deu a liminar. Opero semana que vem!" />
               <ReviewCard name="Carla R." time="3 meses atrás" text="O plano negou dizendo que era estética. Eu tinha assaduras e muita vergonha de me relacionar. Achei a Fabiana, que parcelou em 10x e fez um trabalho impecável. Minha autoestima mudaram." />
               <ReviewCard name="Marta V." time="5 meses atrás" text="Profissional humana, explicou tudo mastigadinho. Eu sou de SP e o processo online fluiu super bem. Recomendo muito." />
-            </div>
-          </div>
-        </section>
+              </div>
+              </div>
+              </section>
 
-        {/* SESSÃO 8: FAQ */}
-        <section className="py-24 px-6 bg-white border-t border-brand-medium/50">
-          <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-dark text-center mb-12">Dúvidas Frequentes</h2>
-            <div className="space-y-4 faq-list">
+              {/* SESSÃO 8: FAQ */}
+              <section className="py-24 px-6 bg-white border-t border-brand-medium/50">
+              <div className="max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-dark text-center mb-12">Dúvidas Frequentes</h2>
+              <div className="space-y-4 faq-list">
               <FAQItem question="Atendem SUS ou só Plano de Saúde?" answer="Atuamos EXCLUSIVAMENTE contra Planos de Saúde. Se o seu caso é SUS, recomendamos a Defensoria Pública." />
               <FAQItem question="Quanto tempo demora para o juiz decidir?" answer="Com bons laudos, o juiz costuma analisar a Liminar em questão de dias." />
-              <FAQItem question="O processo é muito caro?" answer="Oferecemos parcelamento em até 10x sem juros no cartão de crédito. O financeiro não será a barreira para sua saúde." highlight />
+              <FAQItem question="Como funciona o pagamento dos honorários?" answer="Oferecemos condições facilitadas com parcelamento em até 10x sem juros no cartão de crédito. O financeiro não será a barreira para sua saúde." highlight />
               <FAQItem question="O plano pode cancelar meu contrato?" answer="De forma alguma! É proibido por lei o plano cancelar ou retaliar você por buscar seus direitos." />
-            </div>
-            <div className="mt-16 text-center bg-brand-light p-8 rounded-2xl border border-brand-medium">
+              </div>            <div className="mt-16 text-center bg-brand-light p-8 rounded-2xl border border-brand-medium">
               <h3 className="text-xl font-serif font-bold text-brand-dark mb-2">Ainda tem dúvidas?</h3>
               <p className="text-[#5A514D] mb-6">Nossa equipe está pronta para avaliar sua negativa agora mesmo.</p>
               <WhatsAppButton text="Falar com a equipe pelo WhatsApp" outline />
