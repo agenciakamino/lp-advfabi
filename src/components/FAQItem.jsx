@@ -5,7 +5,7 @@ function FAQItem({ question, answer, highlight }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={`border rounded-xl bg-white overflow-hidden transition-colors duration-200 ${highlight ? 'border-brand-accent' : 'border-brand-medium/60'}`}>
+    <div className={`faq-item border rounded-xl bg-white overflow-hidden transition-colors duration-200 ${highlight ? 'border-brand-accent' : 'border-brand-medium/60'}`}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}

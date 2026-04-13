@@ -195,9 +195,9 @@ function App() {
         });
       }
 
-      const faqs = gsap.utils.toArray(".faq-list > div");
+      const faqs = gsap.utils.toArray(".faq-item");
       if (faqs.length > 0) {
-        gsap.set(faqs, { opacity: 0, y: 20 });
+        gsap.set(faqs, { opacity: 0, y: 30 });
         gsap.to(faqs, {
           scrollTrigger: {
             trigger: ".faq-list",
@@ -205,9 +205,9 @@ function App() {
           },
           y: 0,
           opacity: 1,
-          stagger: 0.1,
-          duration: 0.6,
-          ease: "power2.out"
+          stagger: 0.12,
+          duration: 0.8,
+          ease: "power3.out"
         });
       }
 
