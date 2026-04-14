@@ -289,27 +289,27 @@ function App() {
         {/* SESSÃO 1: HERO */}
         <section className="relative bg-brand-light min-h-screen flex flex-col lg:flex-row items-stretch overflow-hidden">
           <div className="w-full lg:w-1/2 flex flex-col justify-center items-center pt-32 pb-16 px-8 lg:py-16 lg:px-16 order-1 lg:order-1 bg-brand-light hero-content">
-            <div className="w-full max-w-xl">
+            <div className="w-full max-w-xl text-center lg:text-left flex flex-col items-center lg:items-start">
               <div className="overflow-hidden">
-                <h1 className="text-5xl md:text-5xl lg:text-6xl font-serif font-bold leading-[1.1] mb-8 text-brand-dark">
-                  Negativa de Cirurgia Reparadora? <span className="text-brand-accent underline decoration-brand-accent/30 underline-offset-8">Seu direito garantido.</span>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-[1.1] mb-8 text-brand-dark">
+                  Negativa de Cirurgia após Bariátrica? <span className="text-brand-accent underline decoration-brand-accent/30 underline-offset-8">Seu direito garantido.</span>
                 </h1>
               </div>
               <p className="text-xl text-[#5A514D] mb-10 leading-relaxed">
-                A Dra. Fabiana Golembiewski é especialista em reverter negativas de planos de saúde para <strong>cirurgias reparadoras pós-bariátrica</strong> em todo o Brasil. Recupere sua saúde e dignidade com agilidade jurídica.
+                A Dra. Fabiana Golembiewski é especialista em reverter negativas de planos de saúde para <strong>cirurgias reparadoras</strong> em todo o Brasil. Atendimento humanizado para recuperar sua saúde e dignidade.
               </p>
-              <div className="flex flex-col sm:flex-row items-center gap-6 mb-12 scale-90 sm:scale-100 origin-left">
-                <WhatsAppButton text="Quero analisar meu caso gratuitamente" pulse icon />
+              <div className="flex flex-col sm:flex-row items-center gap-6 mb-12 scale-90 sm:scale-100 origin-center lg:origin-left">
+                <WhatsAppButton text="Analisar meu caso gratuitamente" pulse icon />
               </div>
               <div className="flex items-center gap-5 bg-white p-5 border border-brand-medium/50 inline-flex hero-review-box">
                 <div className="flex -space-x-3">
                   {[...Array(4)].map((_, i) => (
                     <div key={i} className="w-12 h-12 rounded-full border-2 border-white bg-brand-medium overflow-hidden hero-avatar">
-                       <img src={`https://i.pravatar.cc/100?img=${i + 20}`} alt="Paciente satisfeito" loading="lazy" className="w-full h-full object-cover" />
+                       <img src={`https://i.pravatar.cc/100?img=${i + 25}`} alt="Paciente satisfeito" loading="lazy" className="w-full h-full object-cover" />
                     </div>
                   ))}
                 </div>
-                <div>
+                <div className="text-left">
                   <div className="flex text-yellow-400 gap-1 mb-1 hero-stars">
                     <Icon name="Star" size={16} fill="currentColor" />
                     <Icon name="Star" size={16} fill="currentColor" />
@@ -326,7 +326,7 @@ function App() {
             <img 
               src={heroImage} 
               alt="Advogada Dra. Fabiana Golembiewski" 
-              className="absolute -top-[10%] left-0 w-full h-[120%] object-cover object-top parallax-img"
+              className="absolute -top-[15%] left-0 w-full h-[130%] object-cover object-center parallax-img"
               loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
@@ -473,18 +473,18 @@ function App() {
         {/* SESSÃO 5: MÉTODO */}
         <section id="como-funciona" className="py-24 px-6 bg-brand-dark text-white scroll-mt-24">
           <div className="max-w-6xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Como revertermos essa situação?</h2>
-            <p className="text-brand-medium text-lg mb-16 max-w-2xl mx-auto">Um método validado, sem burocracia desnecessária e com foco total na velocidade que a sua saúde exige.</p>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Como revertemos essa situação?</h2>
+            <p className="text-brand-medium text-lg mb-16 max-w-2xl mx-auto font-medium">Um método humanizado e focado em resultados, conduzido com a seriedade e o acolhimento que o seu caso merece.</p>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
               <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-[#4A4542] z-0"></div>
-              <MethodStep number="1" title="Contato Direto" desc="Você fala direto comigo pelo WhatsApp, sem passar por robôs ou intermediários confusos." />
-              <MethodStep number="2" title="Análise Rápida" desc="Avaliamos sua negativa, pedido médico e laudos de forma totalmente gratuita." />
-              <MethodStep number="3" title="Ação Liminar" desc="Entramos com o processo na justiça com um pedido de urgência (Liminar) para o juiz." />
-              <MethodStep number="4" title="Cirurgia Liberada" desc="Com a ordem do juiz, o plano é obrigado a custear o hospital, médicos e a sua cirurgia." />
+              <MethodStep number="1" title="Atendimento Acolhedor" desc="Fale com nossa equipe pelo WhatsApp para um atendimento inicial humanizado e sem robôs." />
+              <MethodStep number="2" title="Análise Especializada" desc="Analisamos sua negativa, pedido médico e laudos de forma detalhada e gratuita." />
+              <MethodStep number="3" title="Ação Estratégica" desc="Protocolamos o pedido judicial com urgência (Liminar) para garantir seu direito à saúde." />
+              <MethodStep number="4" title="Cirurgia Garantida" desc="Com a decisão judicial, o plano torna-se obrigado a custear todo o seu procedimento." />
             </div>
             <div className="mt-16 inline-flex items-center gap-3 bg-brand-accent/20 text-brand-medium px-6 py-4 rounded-full font-bold border border-brand-accent/50">
               <Icon name="Clock" size={24} className="text-brand-accent" />
-              <span className="text-lg">Nós agimos rápido porque sabemos que a sua dor não espera.</span>
+              <span className="text-lg">Agimos com a urgência que sua saúde e autoestima exigem.</span>
             </div>
           </div>
         </section>
@@ -495,42 +495,42 @@ function App() {
             <div className="w-full md:w-1/2 min-h-[500px] relative overflow-hidden parallax-container">
               <img src={bioImage} alt="Dra. Fabiana" loading="lazy" className="absolute -top-[10%] left-0 w-full h-[120%] object-cover object-top parallax-img" />
             </div>
-            <div className="w-full md:w-1/2 p-10 lg:p-20 flex flex-col justify-center">
+            <div className="w-full md:w-1/2 p-10 lg:p-20 flex flex-col justify-center text-center md:text-left items-center md:items-start">
               <div className="inline-block px-4 py-1.5 bg-brand-light border border-brand-medium rounded-full text-xs font-bold text-brand-accent uppercase tracking-widest mb-6 w-max">
-                Compromisso e Experiência em Direito da Saúde
+                Experiência em Direito da Saúde
               </div>
               <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-6">Dra. Fabiana Golembiewski</h2>
               <div className="space-y-4 text-[#5A514D] text-lg leading-relaxed mb-10">
-                <p>"Atrás de toda negativa de plano de saúde existe uma mulher que lutou muito para vencer a obesidade e que agora só quer colocar um biquíni, se olhar no espelho e se amar por completo."</p>
-                <p>Sou especialista em Direito da Saúde. Com sede física em <strong>Joinville/SC</strong> e atendimento <strong>100% digital</strong> para todo o Brasil, ajudo pacientes a resgatarem sua dignidade.</p>
+                <p>"Entendo que a cirurgia reparadora não é estética, é a conclusão de um ciclo de superação. Minha missão é garantir que o plano de saúde respeite sua trajetória."</p>
+                <p>Especialista em Direito da Saúde com sede física em <strong>Joinville/SC</strong> e atendimento para todo o Brasil. Unimos o rigor jurídico ao acolhimento necessário para casos de bariátrica.</p>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 authority-cards">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 authority-cards w-full">
                 <div className="flex items-center gap-4 p-5 bg-brand-light rounded-xl border border-brand-medium/50">
                   <Icon name="MapPin" className="text-brand-accent" size={28} />
-                  <div><p className="font-bold text-brand-dark">Sede em Joinville/SC</p><p className="text-sm text-[#5A514D]">Atendimento em todo o Brasil</p></div>
+                  <div className="text-left"><p className="font-bold text-brand-dark">Sede em Joinville/SC</p><p className="text-sm text-[#8A7B74]">Presencial e Digital</p></div>
                 </div>
                 <div className="flex items-center gap-4 p-5 bg-brand-light rounded-xl border border-brand-medium/50">
                   <Icon name="ShieldCheck" className="text-brand-accent" size={28} />
-                  <div><p className="font-bold text-brand-dark">Especialista em Saúde</p><p className="text-sm text-[#5A514D]">Foco total em reparadoras</p></div>
+                  <div className="text-left"><p className="font-bold text-brand-dark">Direito da Saúde</p><p className="text-sm text-[#8A7B74]">Foco em Reparadoras</p></div>
                 </div>
               </div>
-              <WhatsAppButton text="Falar com a Dra. Fabiana" icon />
-              </div>
-              </div>
-              </section>
+              <WhatsAppButton text="Falar com nossa equipe" icon />
+            </div>
+          </div>
+        </section>
 
-              {/* SESSÃO 7: PROVA SOCIAL */}
-              <section className="py-24 px-6 bg-brand-light">
-              <div className="max-w-6xl mx-auto">
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-center text-brand-dark mb-4">Vozes de quem já venceu</h2>
-              <p className="text-center text-[#5A514D] text-lg mb-16">Histórias reais de pacientes que não aceitaram o "Não" do plano.</p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 reviews-grid">
-              <ReviewCard name="Juliana S." time="1 mês atrás" text="Estava há 2 anos tentando liberar a reparadora. A Dra. pegou meu caso e em menos de um mês o juiz deu a liminar. Opero semana que vem!" />
-              <ReviewCard name="Carla R." time="3 meses atrás" text="O plano negou dizendo que era estética. Eu tinha assaduras e muita vergonha de me relacionar. Achei a Fabiana, que parcelou em 10x e fez um trabalho impecável. Minha autoestima mudaram." />
-              <ReviewCard name="Marta V." time="5 meses atrás" text="Profissional humana, explicou tudo mastigadinho. Eu sou de SP e o processo online fluiu super bem. Recomendo muito." />
-              </div>
-              </div>
-              </section>
+        {/* SESSÃO 7: PROVA SOCIAL */}
+        <section className="py-24 px-6 bg-brand-light">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-center text-brand-dark mb-4">Casos de Sucesso</h2>
+            <p className="text-center text-[#5A514D] text-lg mb-16">Histórias de transformação através da justiça.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 reviews-grid">
+              <ReviewCard name="Paciente J.S." time="Joinville/SC" text="Após 2 anos de negativas, conseguimos a liminar em tempo recorde. A Dra. conduziu o caso com muita humanidade e clareza em cada etapa." />
+              <ReviewCard name="Paciente C.R." time="São Paulo/SP" text="O plano alegava ser procedimento estético, ignorando minhas dores. A equipe jurídica provou a necessidade médica e hoje estou operada e feliz." />
+              <ReviewCard name="Paciente M.V." time="Curitiba/PR" text="O atendimento remoto foi excelente. Me senti segura mesmo estando em outra cidade. Profissionais extremamente competentes e atenciosos." />
+            </div>
+          </div>
+        </section>
 
               {/* SESSÃO 8: FAQ */}
               <section className="py-24 px-6 bg-white border-t border-brand-medium/50">
@@ -590,7 +590,7 @@ function App() {
               </li>
               <li className="flex items-center gap-3">
                 <Icon name="Clock" size={20} className="text-brand-accent" />
-                <span className="text-brand-medium">Atendimento 100% Online Nacional</span>
+                <span className="text-brand-medium">Atendimento em todo o Brasil</span>
               </li>
             </ul>
           </div>
