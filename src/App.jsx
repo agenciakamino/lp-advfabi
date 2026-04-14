@@ -8,8 +8,8 @@ import ReviewCard from './components/ReviewCard';
 import FAQItem from './components/FAQItem';
 
 // Import images
-import heroImage from './assets/hero-fabi.jpg';
-import bioImage from './assets/bio-fabi.jpg';
+import heroImage from './assets/hero.png';
+import bioImage from './assets/sobre-mim.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
