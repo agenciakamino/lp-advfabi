@@ -380,7 +380,7 @@ function App() {
         {/* SESSÃO 3: A SOLUÇÃO DETALHADA */}
         <section id="direitos" className="bg-brand-light border-t border-brand-medium/30 scroll-mt-24">
           <div className="flex flex-col md:flex-row-reverse items-stretch">
-            <div className="w-full md:w-1/2 py-20 px-8 lg:px-20 flex flex-col justify-center">
+            <div className="w-full md:w-1/2 py-20 px-8 lg:px-20 flex flex-col justify-center items-center md:items-start text-center md:text-left">
               <div className="max-w-2xl mr-auto">
                 <div className="overflow-hidden">
                   <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4 leading-tight uppercase">
