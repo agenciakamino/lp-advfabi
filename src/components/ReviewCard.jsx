@@ -24,11 +24,11 @@ function ReviewCard({ name, time, text }) {
               <Icon name="Star" size={14} fill="currentColor" />
               <Icon name="Star" size={14} fill="currentColor" />
             </div>
-            <span className="text-sm text-[#8A7B74]">{time}</span>
+            <span className="text-sm text-slate-500">{time}</span>
           </div>
         </div>
       </div>
-      <p className="text-[#5A514D] text-base leading-relaxed flex-grow italic">"{text}"</p>
+      <p className="text-slate-600 text-base leading-relaxed flex-grow italic">"{text}"</p>
     </div>
   );
 }

@@ -9,7 +9,7 @@ function FAQItem({ question, answer, highlight }) {
       <button 
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
-        className="w-full text-left px-6 py-6 flex justify-between items-center gap-4 focus:outline-none hover:bg-[#FDFBF9]"
+        className="w-full text-left px-6 py-6 flex justify-between items-center gap-4 focus:outline-none hover:bg-brand-light"
       >
         <span className={`font-serif font-bold text-lg ${highlight ? 'text-brand-accent' : 'text-brand-dark'}`}>{question}</span>
         {isOpen ? (
@@ -23,7 +23,7 @@ function FAQItem({ question, answer, highlight }) {
         className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 pb-6 opacity-100' : 'max-h-0 opacity-0'}`}
         aria-hidden={!isOpen}
       >
-        <p className="text-[#5A514D] text-base leading-relaxed pt-4 border-t border-brand-medium/20">
+        <p className="text-slate-600 text-base leading-relaxed pt-4 border-t border-brand-medium/20">
           {answer}
         </p>
       </div>

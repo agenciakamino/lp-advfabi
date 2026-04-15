@@ -255,17 +255,17 @@ function App() {
               <div className="font-serif text-lg md:text-xl font-bold tracking-tight text-brand-dark leading-none">
                 Dra. Fabiana Golembiewski
               </div>
-              <div className="text-[10px] text-[#8A7B74] font-bold tracking-widest uppercase mt-1.5">
+              <div className="text-[10px] text-brand-accent font-bold tracking-widest uppercase mt-1.5">
                 Especialista em Direito da Saúde
               </div>
             </div>
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
-            <a href="/" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-[#5A514D] hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Início</a>
-            <a href="#importancia" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-[#5A514D] hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>A Cirurgia</a>
-            <a href="#direitos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-[#5A514D] hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Seus Direitos</a>
-            <a href="#como-funciona" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-[#5A514D] hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Como Funciona</a>
+            <a href="/" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Início</a>
+            <a href="#importancia" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>A Cirurgia</a>
+            <a href="#direitos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Seus Direitos</a>
+            <a href="#como-funciona" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Como Funciona</a>
             <WhatsAppButton text="Falar com a Dra." size="sm" className="hidden lg:flex" />
           </nav>
 
@@ -292,10 +292,10 @@ function App() {
             <div className="w-full max-w-xl text-center lg:text-left flex flex-col items-center lg:items-start">
               <div className="overflow-hidden">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-[1.1] mb-8 text-brand-dark">
-                  Negativa de Cirurgia após Bariátrica? <span className="text-brand-accent underline decoration-brand-accent/30 underline-offset-8">Seu direito garantido.</span>
+                  Negativa de Cirurgia após Bariátrica? <span className="text-brand-accent italic underline decoration-brand-accent/30 underline-offset-8">Seu direito garantido.</span>
                 </h1>
               </div>
-              <p className="text-xl text-[#5A514D] mb-10 leading-relaxed">
+              <p className="text-xl text-brand-muted mb-10 leading-relaxed">
                 A Dra. Fabiana Golembiewski é especialista em reverter negativas de planos de saúde para <strong>cirurgias reparadoras</strong> em todo o Brasil. Atendimento humanizado para recuperar sua saúde e dignidade.
               </p>
               <div className="flex flex-col sm:flex-row items-center gap-6 mb-12 scale-90 sm:scale-100 origin-center lg:origin-left">
@@ -317,7 +317,7 @@ function App() {
                     <Icon name="Star" size={16} fill="currentColor" />
                     <Icon name="Star" size={16} fill="currentColor" />
                   </div>
-                  <p className="text-sm font-bold text-[#5A514D]">Mais de 150 avaliações 5 estrelas</p>
+                  <p className="text-sm font-bold text-brand-muted">Mais de 150 avaliações 5 estrelas</p>
                 </div>
               </div>
             </div>
@@ -340,10 +340,11 @@ function App() {
         <section id="importancia" className="py-24 px-6 bg-white border-t border-brand-medium/30 scroll-mt-24">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
+              <span className="text-brand-accent font-bold tracking-widest uppercase text-xs mb-4 block">Sua Jornada</span>
               <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-4 uppercase tracking-tight">
-                O Caminho para a sua <span className="text-brand-accent italic">Nova Vida</span>
+                O Caminho para a sua <span className="text-brand-accent italic underline decoration-brand-accent/20 underline-offset-4">Nova Vida</span>
               </h2>
-              <p className="text-lg text-[#8A7B74] max-w-2xl mx-auto font-medium">
+              <p className="text-lg text-brand-muted max-w-2xl mx-auto font-medium">
                 Sua jornada não é apenas um processo judicial, é a retomada da sua dignidade em três etapas fundamentais.
               </p>
             </div>
@@ -353,14 +354,14 @@ function App() {
                   <Icon name="Users" size={32} />
                 </div>
                 <h3 className="text-xl font-serif font-bold text-brand-dark mb-4">Ecossistema de Saúde</h3>
-                <p className="text-[#5A514D] leading-relaxed">Não é apenas advocacia. É uma rede de apoio com suporte especializado para que você se sinta segura em cada decisão.</p>
+                <p className="text-brand-muted leading-relaxed">Não é apenas advocacia. É uma rede de apoio com suporte especializado para que você se sinta segura em cada decisão.</p>
               </div>
               <div className="bg-brand-light p-10 border border-brand-medium/50 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-all duration-500">
                 <div className="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
                   <Icon name="Activity" size={32} />
                 </div>
                 <h3 className="text-xl font-serif font-bold text-brand-dark mb-4">O Início da Mudança</h3>
-                <p className="text-[#5A514D] leading-relaxed">A cirurgia bariátrica é o primeiro grande passo. Garantimos que seu plano de saúde cubra o início da sua transformação.</p>
+                <p className="text-brand-muted leading-relaxed">A cirurgia bariátrica é o primeiro grande passo. Garantimos que seu plano de saúde cubra o início da sua transformação.</p>
               </div>
               <div className="bg-brand-light p-10 border border-brand-medium/50 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-all duration-500 relative overflow-hidden">
                 <div className="absolute top-0 right-0 bg-brand-accent text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Destaque</div>
@@ -368,7 +369,7 @@ function App() {
                   <Icon name="Sparkles" size={32} />
                 </div>
                 <h3 className="text-xl font-serif font-bold text-brand-dark mb-4">A Cereja do Bolo</h3>
-                <p className="text-[#5A514D] leading-relaxed">A retirada do excesso de pele é a devolução da sua vida social, íntima e a cura definitiva para as dores e assaduras.</p>
+                <p className="text-brand-muted leading-relaxed">A retirada do excesso de pele é a devolução da sua vida social, íntima e a cura definitiva para as dores e assaduras.</p>
               </div>
             </div>
             <div className="flex flex-col items-center">
@@ -383,11 +384,12 @@ function App() {
             <div className="w-full md:w-1/2 py-20 px-8 lg:px-20 flex flex-col justify-center items-center md:items-start text-center md:text-left">
               <div className="max-w-2xl mr-auto">
                 <div className="overflow-hidden">
-                  <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4 leading-tight uppercase">
-                    Cirurgias Reparadoras comuns após a Bariátrica
+                  <span className="text-brand-accent font-bold tracking-widest uppercase text-xs mb-4 block">Procedimentos</span>
+                  <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-4 leading-tight uppercase">
+                    Cirurgias <span className="text-brand-accent italic underline decoration-brand-accent/20 underline-offset-4">Reparadoras comuns</span> após a Bariátrica
                   </h2>
                 </div>
-                <p className="text-[#8A7B74] italic mb-6 font-serif text-lg">Com laudo médico, as mais realizadas incluem:</p>
+                <p className="text-brand-muted italic mb-6 font-serif text-lg">Com laudo médico, as mais realizadas incluem:</p>
                 <div className="space-y-4 mb-8 solution-list">
                   <div className="flex items-center gap-4 bg-white p-4 rounded-none shadow-sm border border-brand-medium/40">
                     <div className="w-10 h-10 bg-brand-accent/10 rounded-full flex items-center justify-center text-brand-accent font-bold">A</div>
@@ -416,8 +418,8 @@ function App() {
             </div>
             <div className="w-full md:w-1/2 relative min-h-[500px] overflow-hidden parallax-container">
               <img 
-                src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80" 
-                alt="Paciente analisando resultados" 
+                src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80" 
+                alt="Atendimento Especializado Dra. Fabiana" 
                 loading="lazy"
                 className="absolute -top-[10%] left-0 w-full h-[120%] object-cover parallax-img" 
               />
@@ -429,38 +431,39 @@ function App() {
         <section className="py-20 px-6 bg-white border-t border-brand-medium/30">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-brand-dark mb-4">
-                O que o seu plano alegou para negar?
+              <span className="text-brand-accent font-bold tracking-widest uppercase text-xs mb-4 block">Justiça e Direitos</span>
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-4">
+                O que o seu plano <span className="text-brand-accent italic underline decoration-brand-accent/20 underline-offset-4">alegou para negar</span>?
               </h2>
-              <p className="text-[#5A514D] text-lg">Mesmo com a guia do seu médico, os convênios usam desculpas padrão para não pagar a cirurgia. <strong>Nenhuma delas está acima da sua saúde.</strong></p>
+              <p className="text-brand-muted text-lg">Mesmo com a guia do seu médico, os convênios usam desculpas padrão para não pagar a cirurgia. <strong>Nenhuma delas está acima da sua saúde.</strong></p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 negativas-grid">
               <div className="bg-red-50/40 border border-red-100 p-8 rounded-2xl flex gap-4 items-start hover:shadow-md transition-shadow group">
                 <Icon name="XCircle" className="text-red-500 flex-shrink-0 mt-1 group-hover:scale-110 transition-transform" size={28} />
                 <div>
                   <h3 className="font-bold text-brand-dark text-lg mb-2">"Procedimento Estético"</h3>
-                  <p className="text-[#5A514D] leading-relaxed">O STJ já definiu que retirar o excesso de pele para evitar infecções e recuperar a saúde psicológica é tratamento de continuidade, não estética.</p>
+                  <p className="text-brand-muted leading-relaxed">O STJ já definiu que retirar o excesso de pele para evitar infecções e recuperar a saúde psicológica é tratamento de continuidade, não estética.</p>
                 </div>
               </div>
               <div className="bg-red-50/40 border border-red-100 p-8 rounded-2xl flex gap-4 items-start hover:shadow-md transition-shadow group">
                 <Icon name="XCircle" className="text-red-500 flex-shrink-0 mt-1 group-hover:scale-110 transition-transform" size={28} />
                 <div>
                   <h3 className="font-bold text-brand-dark text-lg mb-2">"Fora do Rol da ANS"</h3>
-                  <p className="text-[#5A514D] leading-relaxed">O rol da ANS é apenas uma lista básica. Se o seu médico atestou a necessidade física, o plano deve cobrir independente dessa lista.</p>
+                  <p className="text-brand-muted leading-relaxed">O rol da ANS é apenas uma lista básica. Se o seu médico atestou a necessidade física, o plano deve cobrir independente dessa lista.</p>
                 </div>
               </div>
               <div className="bg-red-50/40 border border-red-100 p-8 rounded-2xl flex gap-4 items-start hover:shadow-md transition-shadow group">
                 <Icon name="XCircle" className="text-red-500 flex-shrink-0 mt-1 group-hover:scale-110 transition-transform" size={28} />
                 <div>
                   <h3 className="font-bold text-brand-dark text-lg mb-2">"Falta de Carência"</h3>
-                  <p className="text-[#5A514D] leading-relaxed">Em casos de risco iminente de infecções graves ou dores agudas, a carência contratual pode ser quebrada pelo juiz.</p>
+                  <p className="text-brand-muted leading-relaxed">Em casos de risco iminente de infecções graves ou dores agudas, a carência contratual pode ser quebrada pelo juiz.</p>
                 </div>
               </div>
               <div className="bg-red-50/40 border border-red-100 p-8 rounded-2xl flex gap-4 items-start hover:shadow-md transition-shadow group">
                 <Icon name="XCircle" className="text-red-500 flex-shrink-0 mt-1 group-hover:scale-110 transition-transform" size={28} />
                 <div>
                   <h3 className="font-bold text-brand-dark text-lg mb-2">"Contrato antigo"</h3>
-                  <p className="text-[#5A514D] leading-relaxed">A lei evolui para proteger você. Cláusulas antigas que restringem direitos fundamentais à saúde são consideradas abusivas e nulas.</p>
+                  <p className="text-brand-muted leading-relaxed">A lei evolui para proteger você. Cláusulas antigas que restringem direitos fundamentais à saúde são consideradas abusivas e nulas.</p>
                 </div>
               </div>
             </div>
@@ -471,18 +474,19 @@ function App() {
         </section>
 
         {/* SESSÃO 5: MÉTODO */}
-        <section id="como-funciona" className="py-24 px-6 bg-brand-dark text-white scroll-mt-24">
+        <section id="como-funciona" className="py-24 px-6 bg-slate-50 border-t border-brand-medium/30 scroll-mt-24">
           <div className="max-w-6xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Como revertemos essa situação?</h2>
-            <p className="text-brand-medium text-lg mb-16 max-w-2xl mx-auto font-medium">Um método humanizado e focado em resultados, conduzido com a seriedade e o acolhimento que o seu caso merece.</p>
+            <span className="text-brand-accent font-bold tracking-widest uppercase text-xs mb-4 block">Nosso Método</span>
+            <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-4">Como <span className="text-brand-accent italic underline decoration-brand-accent/20 underline-offset-4">revertemos essa situação</span>?</h2>
+            <p className="text-brand-muted text-lg mb-16 max-w-2xl mx-auto font-medium">Um método humanizado e focado em resultados, conduzido com a seriedade e o acolhimento que o seu caso merece.</p>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-              <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-[#4A4542] z-0"></div>
-              <MethodStep number="1" title="Atendimento Acolhedor" desc="Fale com nossa equipe pelo WhatsApp para um atendimento inicial humanizado e sem robôs." />
-              <MethodStep number="2" title="Análise Especializada" desc="Analisamos sua negativa, pedido médico e laudos de forma detalhada e gratuita." />
-              <MethodStep number="3" title="Ação Estratégica" desc="Protocolamos o pedido judicial com urgência (Liminar) para garantir seu direito à saúde." />
-              <MethodStep number="4" title="Cirurgia Garantida" desc="Com a decisão judicial, o plano torna-se obrigado a custear todo o seu procedimento." />
+              <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-brand-medium/40 z-0"></div>
+              <MethodStep number="1" title="Atendimento Acolhedor" desc="Fale com nossa equipe pelo WhatsApp para um atendimento inicial humanizado e sem robôs." light />
+              <MethodStep number="2" title="Análise Especializada" desc="Analisamos sua negativa, pedido médico e laudos de forma detalhada e gratuita." light />
+              <MethodStep number="3" title="Ação Estratégica" desc="Protocolamos o pedido judicial com urgência (Liminar) para garantir seu direito à saúde." light />
+              <MethodStep number="4" title="Cirurgia Garantida" desc="Com a decisão judicial, o plano torna-se obrigado a custear todo o seu procedimento." light />
             </div>
-            <div className="mt-16 inline-flex items-center gap-3 bg-brand-accent/20 text-brand-medium px-6 py-4 rounded-full font-bold border border-brand-accent/50">
+            <div className="mt-16 inline-flex items-center gap-3 bg-brand-accent/5 text-brand-accent px-6 py-4 rounded-full font-bold border border-brand-accent/20">
               <Icon name="Clock" size={24} className="text-brand-accent" />
               <span className="text-lg">Agimos com a urgência que sua saúde e autoestima exigem.</span>
             </div>
@@ -500,18 +504,18 @@ function App() {
                 Experiência em Direito da Saúde
               </div>
               <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-6">Dra. Fabiana Golembiewski</h2>
-              <div className="space-y-4 text-[#5A514D] text-lg leading-relaxed mb-10">
+              <div className="space-y-4 text-brand-muted text-lg leading-relaxed mb-10">
                 <p>"Entendo que a cirurgia reparadora não é estética, é a conclusão de um ciclo de superação. Minha missão é garantir que o plano de saúde respeite sua trajetória."</p>
                 <p>Especialista em Direito da Saúde com sede física em <strong>Joinville/SC</strong> e atendimento para todo o Brasil. Unimos o rigor jurídico ao acolhimento necessário para casos de bariátrica.</p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 authority-cards w-full">
                 <div className="flex items-center gap-4 p-5 bg-brand-light rounded-xl border border-brand-medium/50">
                   <Icon name="MapPin" className="text-brand-accent" size={28} />
-                  <div className="text-left"><p className="font-bold text-brand-dark">Sede em Joinville/SC</p><p className="text-sm text-[#8A7B74]">Presencial e Digital</p></div>
+                  <div className="text-left"><p className="font-bold text-brand-dark">Sede em Joinville/SC</p><p className="text-sm text-brand-muted">Presencial e Digital</p></div>
                 </div>
                 <div className="flex items-center gap-4 p-5 bg-brand-light rounded-xl border border-brand-medium/50">
                   <Icon name="ShieldCheck" className="text-brand-accent" size={28} />
-                  <div className="text-left"><p className="font-bold text-brand-dark">Direito da Saúde</p><p className="text-sm text-[#8A7B74]">Foco em Reparadoras</p></div>
+                  <div className="text-left"><p className="font-bold text-brand-dark">Direito da Saúde</p><p className="text-sm text-brand-muted">Foco em Reparadoras</p></div>
                 </div>
               </div>
               <WhatsAppButton text="Falar com nossa equipe" icon />
@@ -523,7 +527,7 @@ function App() {
         <section className="py-24 px-6 bg-brand-light">
           <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-serif font-bold text-center text-brand-dark mb-4">Casos de Sucesso</h2>
-            <p className="text-center text-[#5A514D] text-lg mb-16">Histórias de transformação através da justiça.</p>
+            <p className="text-center text-brand-muted text-lg mb-16">Histórias de transformação através da justiça.</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 reviews-grid">
               <ReviewCard name="Paciente J.S." time="Joinville/SC" text="Após 2 anos de negativas, conseguimos a liminar em tempo recorde. A Dra. conduziu o caso com muita humanidade e clareza em cada etapa." />
               <ReviewCard name="Paciente C.R." time="São Paulo/SP" text="O plano alegava ser procedimento estético, ignorando minhas dores. A equipe jurídica provou a necessidade médica e hoje estou operada e feliz." />
@@ -543,7 +547,7 @@ function App() {
               <FAQItem question="O plano pode cancelar meu contrato?" answer="De forma alguma! É proibido por lei o plano cancelar ou retaliar você por buscar seus direitos." />
               </div>            <div className="mt-16 text-center bg-brand-light p-8 rounded-2xl border border-brand-medium">
               <h3 className="text-xl font-serif font-bold text-brand-dark mb-2">Ainda tem dúvidas?</h3>
-              <p className="text-[#5A514D] mb-6">Nossa equipe está pronta para avaliar sua negativa agora mesmo.</p>
+              <p className="text-brand-muted mb-6">Nossa equipe está pronta para avaliar sua negativa agora mesmo.</p>
               <WhatsAppButton text="Falar com a equipe pelo WhatsApp" outline />
             </div>
           </div>
@@ -551,52 +555,52 @@ function App() {
       </main>
 
       {/* FOOTER */}
-      <footer className="bg-brand-dark pt-20 pb-10 px-6 text-sm text-[#8A7B74]">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+      <footer className="bg-slate-800 pt-20 pb-10 px-6 text-sm text-slate-300">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 border-b border-white/10 pb-12">
           <div>
             <div className="flex items-center gap-2 mb-6">
               <Icon name="Scale" className="text-brand-accent" size={28} />
               <div className="font-serif text-xl font-bold text-white">Dra. Fabiana Golembiewski</div>
             </div>
-            <p className="mb-4 text-brand-medium text-base leading-relaxed">Referência em Direito da Saúde. Protegendo vidas e sonhos contra as negativas abusivas dos convênios médicos em todo o Brasil.</p>
+            <p className="mb-4 text-slate-300 text-base leading-relaxed">Referência em Direito da Saúde. Protegendo vidas e sonhos contra as negativas abusivas dos convênios médicos em todo o Brasil.</p>
             <p className="font-bold text-brand-accent text-base">OAB/SC XXXX</p>
           </div>
           
           <div>
-            <h4 className="font-serif font-bold text-white uppercase tracking-widest mb-6">Contato e Endereço</h4>
+            <h4 className="font-serif font-bold text-white uppercase tracking-widest mb-6 text-xs">Contato e Endereço</h4>
             <ul className="space-y-5 text-base">
               <li>
-                <a href="#" className="inline-flex items-center gap-3 text-white hover:text-brand-accent transition-colors">
+                <a href="#" className="inline-flex items-center gap-3 text-slate-300 hover:text-brand-accent transition-colors">
                   <Icon name="Phone" size={20} className="text-brand-accent" /> (47) 99999-9999
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Icon name="MapPin" size={20} className="mt-1 flex-shrink-0 text-brand-accent" />
-                <span className="text-brand-medium"><strong>Sede Principal:</strong><br/> Rua Exemplo, 123, Sala 45<br/>Centro, Joinville - SC</span>
+                <span className="text-slate-300"><strong>Sede Principal:</strong><br/> Rua Exemplo, 123, Sala 45<br/>Centro, Joinville - SC</span>
               </li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-serif font-bold text-white uppercase tracking-widest mb-6">Nossas Facilidades</h4>
+            <h4 className="font-serif font-bold text-white uppercase tracking-widest mb-6 text-xs">Nossas Facilidades</h4>
             <ul className="space-y-5 text-base">
               <li className="flex items-center gap-3">
                 <Icon name="Stethoscope" size={20} className="text-brand-accent" />
-                <span className="text-brand-medium">Análise gratuita de Laudos Médicos</span>
+                <span className="text-slate-300">Análise gratuita de Laudos Médicos</span>
               </li>
               <li className="flex items-center gap-3">
                 <Icon name="CreditCard" size={20} className="text-brand-accent" />
-                <span className="text-brand-medium">Honorários em até 10x sem juros</span>
+                <span className="text-slate-300">Honorários em até 10x sem juros</span>
               </li>
               <li className="flex items-center gap-3">
                 <Icon name="Clock" size={20} className="text-brand-accent" />
-                <span className="text-brand-medium">Atendimento em todo o Brasil</span>
+                <span className="text-slate-300">Atendimento em todo o Brasil</span>
               </li>
             </ul>
           </div>
         </div>
         
-        <div className="max-w-6xl mx-auto text-center border-t border-[#4A4542] pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="max-w-6xl mx-auto text-center pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-400">
           <p>© {new Date().getFullYear()} Fabiana Golembiewski Advocacia. Todos os direitos reservados.</p>
         </div>
       </footer>
