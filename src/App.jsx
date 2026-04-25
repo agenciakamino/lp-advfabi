@@ -3,20 +3,72 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Icon from './components/Icon';
 import WhatsAppButton from './components/WhatsAppButton';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 import MethodStep from './components/MethodStep';
 import ReviewCard from './components/ReviewCard';
 import FAQItem from './components/FAQItem';
+import Modal from './components/Modal';
 
 // Import images
 import heroImage from './assets/hero.png';
-import bioImage from './assets/sobre-mim.png';
+import bioImage from './assets/sobre-mim.jpg';
 
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeJourneyStep, setActiveJourneyStep] = useState(null);
   const mainRef = useRef(null);
+
+  const journeyData = {
+    ecossistema: {
+      title: "Ecossistema de Saúde",
+      icon: "Users",
+      image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80",
+      content: (
+        <div className="space-y-4">
+          <p>Nosso diferencial é não tratar o seu caso apenas como um processo judicial isolado. Construímos uma rede de suporte que inclui:</p>
+          <ul className="space-y-2 list-disc pl-5 text-brand-muted">
+            <li><strong>Parceria com Especialistas:</strong> Diálogo direto com médicos e psicólogos para fundamentar o laudo de necessidade.</li>
+            <li><strong>Suporte Psicológico:</strong> Entendemos a carga emocional da espera e oferecemos acolhimento especializado.</li>
+            <li><strong>Assessoria em Exames:</strong> Orientação sobre quais exames são cruciais para comprovar a continuidade do tratamento.</li>
+          </ul>
+        </div>
+      )
+    },
+    inicio: {
+      title: "O Início da Mudança",
+      icon: "Activity",
+      image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800&q=80",
+      content: (
+        <div className="space-y-4">
+          <p>A cirurgia bariátrica é o marco zero da sua nova vida, mas ela gera obrigações contratuais que o plano muitas vezes tenta ignorar:</p>
+          <ul className="space-y-2 list-disc pl-5 text-brand-muted">
+            <li><strong>Cobertura Integral:</strong> Garantimos que todos os custos hospitalares e materiais sejam cobertos.</li>
+            <li><strong>Quebra de Carência:</strong> Em casos de urgência metabólica ou complicações, atuamos para antecipar o procedimento.</li>
+            <li><strong>Segurança Jurídica:</strong> Proteção contra cancelamentos arbitrários de contrato durante o tratamento.</li>
+          </ul>
+        </div>
+      )
+    },
+    cereja: {
+      title: "A Cereja do Bolo",
+      icon: "Sparkles",
+      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=800&q=80",
+      content: (
+        <div className="space-y-4">
+          <p>Esta é a etapa mais negada pelos planos, mas juridicamente é considerada tratamento de saúde, não estética:</p>
+          <ul className="space-y-2 list-disc pl-5 text-brand-muted">
+            <li><strong>Retirada de Excesso de Pele:</strong> Correção funcional de abdômen, braços, coxas e mamas.</li>
+            <li><strong>Fim das Complicações:</strong> Eliminação de dermatites, infecções fúngicas e dores posturais causadas pelo excesso de pele.</li>
+            <li><strong>Reintegração Social:</strong> O direito de se sentir bem com o próprio corpo após o emagrecimento vitorioso.</li>
+          </ul>
+        </div>
+      )
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -121,19 +173,24 @@ function App() {
       });
 
       // Parallax
-      gsap.utils.toArray('.parallax-img').forEach((img) => {
-        const container = img.closest('.parallax-container');
-        gsap.to(img, {
-          scrollTrigger: {
-            trigger: container,
-            start: "top top",
-            end: "bottom top",
-            scrub: true
-          },
-          y: 40,
-          ease: "none"
+      const parallaxImages = gsap.utils.toArray('.parallax-img');
+      if (parallaxImages.length > 0) {
+        parallaxImages.forEach((img) => {
+          const container = img.closest('.parallax-container');
+          if (container) {
+            gsap.to(img, {
+              scrollTrigger: {
+                trigger: container,
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+              },
+              y: 40,
+              ease: "none"
+            });
+          }
         });
-      });
+      }
 
       const staggeredLists = [
         { parent: ".problem-list", items: ".problem-list li", x: -20 },
@@ -265,6 +322,7 @@ function App() {
             <a href="/" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Início</a>
             <a href="#importancia" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>A Cirurgia</a>
             <a href="#direitos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Seus Direitos</a>
+            <a href="#casos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Casos de Sucesso</a>
             <a href="#como-funciona" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Como Funciona</a>
             <WhatsAppButton text="Falar com a Dra." size="sm" className="hidden lg:flex" />
           </nav>
@@ -279,6 +337,7 @@ function App() {
             <a href="/" onClick={() => setIsMenuOpen(false)} className="text-lg font-bold text-brand-dark uppercase tracking-widest">Início</a>
             <a href="#importancia" onClick={() => setIsMenuOpen(false)} className="text-lg font-bold text-brand-dark uppercase tracking-widest">A Cirurgia</a>
             <a href="#direitos" onClick={() => setIsMenuOpen(false)} className="text-lg font-bold text-brand-dark uppercase tracking-widest">Seus Direitos</a>
+            <a href="#casos" onClick={() => setIsMenuOpen(false)} className="text-lg font-bold text-brand-dark uppercase tracking-widest">Casos de Sucesso</a>
             <a href="#como-funciona" onClick={() => setIsMenuOpen(false)} className="text-lg font-bold text-brand-dark uppercase tracking-widest">Como Funciona</a>
             <WhatsAppButton text="Falar com a Dra. pelo WhatsApp" fullWidth onClick={() => setIsMenuOpen(false)} />
           </nav>
@@ -324,11 +383,10 @@ function App() {
           </div>
           <div className="w-full lg:w-1/2 relative min-h-[400px] lg:min-h-screen order-2 lg:order-2 overflow-hidden hero-image-container parallax-container">
             <img 
-              src={heroImage} 
-              alt="Advogada Dra. Fabiana Golembiewski" 
-              className="absolute -top-[15%] left-0 w-full h-[130%] object-cover object-center parallax-img"
-              loading="eager"
-            />
+              src={heroImage}
+              alt="Advogada Dra. Fabiana Golembiewski"
+              className="absolute top-0 left-0 w-full h-full object-cover object-top lg:object-center hero-image"
+              loading="eager"            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
             <div className="absolute bottom-12 left-12 right-12 text-white">
               <p className="text-2xl font-serif italic font-medium leading-relaxed max-w-md">"O emagrecimento foi só o começo. O seu espelho precisa refletir a sua vitória por completo."</p>
@@ -349,27 +407,47 @@ function App() {
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 transformation-grid">
-              <div className="bg-brand-light p-10 border border-brand-medium/50 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-all duration-500">
+              <div 
+                onClick={() => setActiveJourneyStep('ecossistema')}
+                className="bg-brand-light p-10 border border-brand-medium/50 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-all duration-500 cursor-pointer"
+              >
                 <div className="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
                   <Icon name="Users" size={32} />
                 </div>
                 <h3 className="text-xl font-serif font-bold text-brand-dark mb-4">Ecossistema de Saúde</h3>
-                <p className="text-brand-muted leading-relaxed">Não é apenas advocacia. É uma rede de apoio com suporte especializado para que você se sinta segura em cada decisão.</p>
+                <p className="text-brand-muted leading-relaxed mb-6">Não é apenas advocacia. É uma rede de apoio com suporte especializado para que você se sinta segura em cada decisão.</p>
+                <span className="text-brand-accent font-bold text-sm uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 transition-all">
+                  Saiba mais <Icon name="ArrowRight" size={16} />
+                </span>
               </div>
-              <div className="bg-brand-light p-10 border border-brand-medium/50 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-all duration-500">
+
+              <div 
+                onClick={() => setActiveJourneyStep('inicio')}
+                className="bg-brand-light p-10 border border-brand-medium/50 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-all duration-500 cursor-pointer"
+              >
                 <div className="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
                   <Icon name="Activity" size={32} />
                 </div>
                 <h3 className="text-xl font-serif font-bold text-brand-dark mb-4">O Início da Mudança</h3>
-                <p className="text-brand-muted leading-relaxed">A cirurgia bariátrica é o primeiro grande passo. Garantimos que seu plano de saúde cubra o início da sua transformação.</p>
+                <p className="text-brand-muted leading-relaxed mb-6">A cirurgia bariátrica é o primeiro grande passo. Garantimos que seu plano de saúde cubra o início da sua transformação.</p>
+                <span className="text-brand-accent font-bold text-sm uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 transition-all">
+                  Saiba mais <Icon name="ArrowRight" size={16} />
+                </span>
               </div>
-              <div className="bg-brand-light p-10 border border-brand-medium/50 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-all duration-500 relative overflow-hidden">
+
+              <div 
+                onClick={() => setActiveJourneyStep('cereja')}
+                className="bg-brand-light p-10 border border-brand-medium/50 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-all duration-500 relative overflow-hidden cursor-pointer"
+              >
                 <div className="absolute top-0 right-0 bg-brand-accent text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest">Destaque</div>
                 <div className="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center text-brand-accent mb-6 group-hover:scale-110 transition-transform">
                   <Icon name="Sparkles" size={32} />
                 </div>
                 <h3 className="text-xl font-serif font-bold text-brand-dark mb-4">A Cereja do Bolo</h3>
-                <p className="text-brand-muted leading-relaxed">A retirada do excesso de pele é a devolução da sua vida social, íntima e a cura definitiva para as dores e assaduras.</p>
+                <p className="text-brand-muted leading-relaxed mb-6">A retirada do excesso de pele é a devolução da sua vida social, íntima e a cura definitiva para as dores e assaduras.</p>
+                <span className="text-brand-accent font-bold text-sm uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 transition-all">
+                  Saiba mais <Icon name="ArrowRight" size={16} />
+                </span>
               </div>
             </div>
             <div className="flex flex-col items-center">
@@ -486,9 +564,9 @@ function App() {
               <MethodStep number="3" title="Ação Estratégica" desc="Protocolamos o pedido judicial com urgência (Liminar) para garantir seu direito à saúde." light />
               <MethodStep number="4" title="Cirurgia Garantida" desc="Com a decisão judicial, o plano torna-se obrigado a custear todo o seu procedimento." light />
             </div>
-            <div className="mt-16 inline-flex items-center gap-3 bg-brand-accent/5 text-brand-accent px-6 py-4 rounded-full font-bold border border-brand-accent/20">
-              <Icon name="Clock" size={24} className="text-brand-accent" />
-              <span className="text-lg">Agimos com a urgência que sua saúde e autoestima exigem.</span>
+            <div className="mt-16 text-center">
+              <WhatsAppButton text="Iniciar minha análise gratuita" icon pulse />
+              <p className="mt-4 text-brand-accent/60 text-sm font-medium">Resposta em menos de 30 minutos em horário comercial</p>
             </div>
           </div>
         </section>
@@ -496,8 +574,16 @@ function App() {
         {/* SESSÃO 6: AUTORIDADE */}
         <section className="py-0 bg-white">
           <div className="flex flex-col md:flex-row">
-            <div className="w-full md:w-1/2 min-h-[500px] relative overflow-hidden parallax-container">
-              <img src={bioImage} alt="Dra. Fabiana" loading="lazy" className="absolute -top-[10%] left-0 w-full h-[120%] object-cover object-top parallax-img" />
+            <div 
+              className="w-full md:w-1/2 min-h-[500px] relative overflow-hidden parallax-container cursor-pointer group"
+              onClick={() => setIsModalOpen(true)}
+            >
+              <img src={bioImage} alt="Dra. Fabiana" loading="lazy" className="absolute top-0 left-0 w-full h-full object-cover object-top transition-transform duration-700" />
+              <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/10 transition-colors duration-300 flex items-center justify-center">
+                <div className="bg-white/90 p-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-90 group-hover:scale-100">
+                  <Icon name="Maximize2" className="text-brand-accent" size={24} />
+                </div>
+              </div>
             </div>
             <div className="w-full md:w-1/2 p-10 lg:p-20 flex flex-col justify-center text-center md:text-left items-center md:items-start">
               <div className="inline-block px-4 py-1.5 bg-brand-light border border-brand-medium rounded-full text-xs font-bold text-brand-accent uppercase tracking-widest mb-6 w-max">
@@ -523,15 +609,96 @@ function App() {
           </div>
         </section>
 
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <div className="flex flex-col md:flex-row">
+            <div className="w-full md:w-5/12 h-[300px] md:h-auto min-h-[400px]">
+              <img src={bioImage} alt="Dra. Fabiana Golembiewski" className="w-full h-full object-cover object-top" />
+            </div>
+            <div className="w-full md:w-7/12 p-8 md:p-12 bg-white flex flex-col justify-center">
+              <h3 className="text-3xl font-serif font-bold text-brand-dark mb-2">Dra. Fabiana Golembiewski</h3>
+              <p className="text-brand-accent font-bold uppercase tracking-widest text-sm mb-6 pb-4 border-b border-brand-medium/30">OAB/SC XXXX</p>
+              <div className="space-y-4 text-brand-muted leading-relaxed">
+                <p>Com anos de experiência em Direito da Saúde, a Dra. Fabiana se tornou referência na reversão de negativas para cirurgias reparadoras pós-bariátrica.</p>
+                <p>Sua atuação é pautada pelo atendimento humanizado, entendendo que cada caso representa um sonho de saúde e dignidade que foi interrompido indevidamente pelos planos de saúde.</p>
+                <p>Com sede em Joinville/SC, atende clientes de todo o país, utilizando a tecnologia para encurtar distâncias e garantir que a justiça seja feita, independentemente de onde você esteja.</p>
+              </div>
+              <div className="mt-10">
+                <WhatsAppButton text="Falar diretamente com a Dra." icon fullWidth />
+              </div>
+            </div>
+          </div>
+        </Modal>
+
+        <Modal isOpen={!!activeJourneyStep} onClose={() => setActiveJourneyStep(null)}>
+          {activeJourneyStep && (
+            <div className="flex flex-col md:flex-row min-h-[400px]">
+              <div className="w-full md:w-1/3 relative min-h-[200px] md:min-h-full">
+                <img 
+                  src={journeyData[activeJourneyStep].image} 
+                  alt={journeyData[activeJourneyStep].title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              </div>
+              <div className="w-full md:w-2/3 p-8 md:p-12 bg-white flex flex-col justify-center">
+                <div className="w-16 h-16 bg-brand-accent/10 rounded-full flex items-center justify-center text-brand-accent mb-6">
+                  <Icon name={journeyData[activeJourneyStep].icon} size={32} />
+                </div>
+                <h3 className="text-3xl font-serif font-bold text-brand-dark mb-6">
+                  {journeyData[activeJourneyStep].title}
+                </h3>
+                <div className="text-lg text-brand-muted leading-relaxed mb-8">
+                  {journeyData[activeJourneyStep].content}
+                </div>
+                <div>
+                  <WhatsAppButton text="Tirar dúvidas sobre esta etapa" icon />
+                </div>
+              </div>
+            </div>
+          )}
+        </Modal>
+
         {/* SESSÃO 7: PROVA SOCIAL */}
-        <section className="py-24 px-6 bg-brand-light">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-center text-brand-dark mb-4">Casos de Sucesso</h2>
-            <p className="text-center text-brand-muted text-lg mb-16">Histórias de transformação através da justiça.</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 reviews-grid">
-              <ReviewCard name="Paciente J.S." time="Joinville/SC" text="Após 2 anos de negativas, conseguimos a liminar em tempo recorde. A Dra. conduziu o caso com muita humanidade e clareza em cada etapa." />
-              <ReviewCard name="Paciente C.R." time="São Paulo/SP" text="O plano alegava ser procedimento estético, ignorando minhas dores. A equipe jurídica provou a necessidade médica e hoje estou operada e feliz." />
-              <ReviewCard name="Paciente M.V." time="Curitiba/PR" text="O atendimento remoto foi excelente. Me senti segura mesmo estando em outra cidade. Profissionais extremamente competentes e atenciosos." />
+        <section id="casos" className="py-24 px-6 bg-brand-light scroll-mt-24">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <span className="text-brand-accent font-bold tracking-widest uppercase text-xs mb-4 block">Resultados Reais</span>
+              <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-4">Casos de Sucesso</h2>
+              <p className="text-brand-muted text-lg max-w-2xl mx-auto">Conheça histórias reais de pacientes que recuperaram sua autoestima e saúde através da justiça.</p>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 reviews-grid">
+              <div id="caso-1" className="scroll-mt-32">
+                <ReviewCard 
+                  name="Paciente J.S." 
+                  time="Joinville/SC" 
+                  text="Após 2 anos de negativas, conseguimos a liminar em tempo recorde. A Dra. conduziu o caso com muita humanidade e clareza em cada etapa." 
+                />
+              </div>
+              <div id="caso-2" className="scroll-mt-32">
+                <ReviewCard 
+                  name="Paciente C.R." 
+                  time="São Paulo/SP" 
+                  text="O plano alegava ser procedimento estético, ignorando minhas dores. A equipe jurídica provou a necessidade médica e hoje estou operada e feliz." 
+                />
+              </div>
+              <div id="caso-3" className="scroll-mt-32">
+                <ReviewCard 
+                  name="Paciente M.V." 
+                  time="Curitiba/PR" 
+                  text="O atendimento remoto foi excelente. Me senti segura mesmo estando em outra cidade. Profissionais extremamente competentes e atenciosos." 
+                />
+              </div>
+              <div id="caso-4" className="scroll-mt-32">
+                <ReviewCard 
+                  name="Paciente L.F." 
+                  time="Belo Horizonte/MG" 
+                  text="A equipe da Dra. Fabiana foi impecável. Recuperei meu direito à cirurgia de braços e mamas que o plano havia negado sumariamente." 
+                />
+              </div>
+            </div>
+
+            <div className="mt-16 text-center">
+              <WhatsAppButton text="Quero ser o próximo caso de sucesso" icon pulse />
             </div>
           </div>
         </section>
@@ -604,6 +771,7 @@ function App() {
           <p>© {new Date().getFullYear()} Fabiana Golembiewski Advocacia. Todos os direitos reservados.</p>
         </div>
       </footer>
+      <FloatingWhatsApp />
     </div>
   );
 }

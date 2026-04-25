@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from './Button';
 import Icon from './Icon';
+import { WHATSAPP_CONFIG } from '../constants/contact';
 
 const WhatsAppButton = ({ 
   text, 
@@ -8,7 +9,7 @@ const WhatsAppButton = ({
   size = "md", 
   icon = false, 
   pulse = false,
-  href = "#",
+  href = WHATSAPP_CONFIG.link(),
   className = "",
   ariaLabel
 }) => {
