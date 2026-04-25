@@ -389,7 +389,7 @@ function App() {
               loading="eager"            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
             <div className="absolute bottom-12 left-12 right-12 text-white">
-              <p className="text-2xl font-serif italic font-medium leading-relaxed max-w-md">"O emagrecimento foi só o começo. O seu espelho precisa refletir a sua vitória por completo."</p>
+              <p className="text-2xl font-serif italic font-medium leading-snug max-w-md drop-shadow-[0_2px_2px_rgba(0,0,0,0.9)]">"O emagrecimento foi só o começo. O seu espelho precisa refletir a sua vitória por completo."</p>
             </div>
           </div>
         </section>
