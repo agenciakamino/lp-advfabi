@@ -409,9 +409,9 @@ function App() {
               alt="Advogada Dra. Fabiana Golembiewski"
               className="absolute top-0 left-0 w-full h-full object-cover object-top lg:object-center hero-image"
               loading="eager"            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent"></div>
-            <div className="absolute bottom-12 left-12 right-12 text-white">
-              <p className="text-2xl font-serif italic font-medium leading-snug max-w-md drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]">"O emagrecimento foi só o começo. O seu espelho precisa refletir a sua vitória por completo."</p>
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent"></div>
+            <div className="absolute bottom-10 left-8 right-8 lg:bottom-12 lg:left-12 lg:right-12 text-white">
+              <p className="text-lg md:text-xl lg:text-2xl font-serif italic font-medium leading-tight max-w-sm drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">"O emagrecimento foi só o começo. O seu espelho precisa refletir a sua vitória por completo."</p>
             </div>
           </div>
         </section>
