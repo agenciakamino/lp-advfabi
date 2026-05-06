@@ -355,11 +355,11 @@ function App() {
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
-            <a href="/" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}>Início</a>
-            <a href="#importancia" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}>A Cirurgia</a>
-            <a href="#direitos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}>Seus Direitos</a>
-            <a href="#casos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}>Casos de Sucesso</a>
-            <a href="#como-funciona" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}>Como Funciona</a>
+            <a href="/" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Início</a>
+            <a href="#importancia" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>A Cirurgia</a>
+            <a href="#direitos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Seus Direitos</a>
+            <a href="#casos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Casos de Sucesso</a>
+            <a href="#como-funciona" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Como Funciona</a>
             <WhatsAppButton 
               text="Falar com a Dra." 
               size="sm" 
@@ -398,7 +398,7 @@ function App() {
               <p className="text-xl text-brand-muted mb-10 leading-relaxed">
                 A Dra. Fabiana Golembiewski é especialista em tratar negativas de planos de saúde para <strong>cirurgias reparadoras</strong> em todo o Brasil. Atendimento humanizado para recuperar sua saúde e dignidade.
               </p>
-              <div className="flex flex-col sm:flex-row items-center gap-6 mb-12 scale-90 sm:scale-100 origin-center lg:origin-left">
+              <div className="flex flex-col sm:flex-row items-center gap-6 mb-12 scale-90 sm:scale-100 origin-center lg:origin-left lg:-ml-[2px]">
                 <WhatsAppButton text="Analisar meu caso gratuitamente" variant="dark" pulse icon />
               </div>
             </div>
@@ -601,8 +601,8 @@ function App() {
               onClick={() => setIsModalOpen(true)}
             >
               <img src={bioImage} alt="Dra. Fabiana" loading="lazy" className="absolute top-0 left-0 w-full h-full object-cover object-top transition-transform duration-700" />
-              <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/10 transition-colors duration-300 flex items-center justify-center">
-                <div className="bg-white/90 p-4 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform scale-90 group-hover:scale-100">
+              <div className="absolute inset-0 bg-brand-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="bg-white/90 p-4 rounded-full transform scale-90 group-hover:scale-100 transition-transform">
                   <Icon name="Maximize2" className="text-brand-accent" size={24} />
                 </div>
               </div>
@@ -749,8 +749,7 @@ function App() {
               <FAQItem question="Quanto tempo demora para o juiz decidir?" answer="Com bons laudos, o juiz costuma analisar a Liminar em questão de dias." />
               <FAQItem question="Como funciona o pagamento dos honorários?" answer="Oferecemos condições facilitadas com parcelamento em até 10x sem juros no cartão de crédito. O financeiro não será a barreira para sua saúde." highlight />
               <FAQItem question="O plano pode cancelar meu contrato?" answer="De forma alguma! É proibido por lei o plano cancelar ou retaliar você por buscar seus direitos." />
-              </div>            <div className="mt-16 text-center bg-brand-dark p-10 rounded-2xl border border-brand-accent/20 shadow-2xl relative overflow-hidden group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-brand-accent/5 rounded-full -mr-16 -mt-16 transition-transform group-hover:scale-110"></div>
+              </div>            <div className="mt-16 text-center bg-brand-dark p-10 rounded-2xl border border-white/5 shadow-2xl relative overflow-hidden group">
               <h3 className="text-2xl font-serif font-bold text-white mb-4 relative z-10">Ainda tem dúvidas?</h3>
               <p className="text-white/70 mb-8 max-w-md mx-auto relative z-10">Nossa equipe está pronta para avaliar sua negativa agora mesmo e orientar seus próximos passos.</p>
               <WhatsAppButton text="Falar com a equipe pelo WhatsApp" variant="outline" className="relative z-10" />
