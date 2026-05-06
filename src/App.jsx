@@ -98,7 +98,6 @@ function App() {
             <li><strong>Fim das Complicações:</strong> Tratamento de dermatites, infecções recorrentes e dores posturais causadas pelo excesso de pele.</li>
             <li><strong>Reintegração Social e Emocional:</strong> O direito de se sentir bem com o próprio corpo após o emagrecimento, recuperando sua autoestima, sua confiança e sua liberdade de viver plenamente, inclusive na vida íntima e social, sem os desconfortos causados pelo excesso de pele.</li>
           </ul>
-          <p className="text-sm text-brand-accent font-medium pt-2">Com os laudos corretos emitidos pela equipe médica, o juiz costuma analisar o pedido da liminar em poucos dias.</p>
         </div>
       )
     }
@@ -358,8 +357,8 @@ function App() {
             <a href="/" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Início</a>
             <a href="#importancia" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>A Cirurgia</a>
             <a href="#direitos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Seus Direitos</a>
-            <a href="#casos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Casos de Sucesso</a>
             <a href="#como-funciona" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Como Funciona</a>
+            <a href="#casos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Casos de Sucesso</a>
             <WhatsAppButton 
               text="Falar com a Dra." 
               size="sm" 
@@ -378,8 +377,8 @@ function App() {
             <a href="/" onClick={() => setIsMenuOpen(false)} className="text-lg font-bold text-brand-dark uppercase tracking-widest">Início</a>
             <a href="#importancia" onClick={() => setIsMenuOpen(false)} className="text-lg font-bold text-brand-dark uppercase tracking-widest">A Cirurgia</a>
             <a href="#direitos" onClick={() => setIsMenuOpen(false)} className="text-lg font-bold text-brand-dark uppercase tracking-widest">Seus Direitos</a>
-            <a href="#casos" onClick={() => setIsMenuOpen(false)} className="text-lg font-bold text-brand-dark uppercase tracking-widest">Casos de Sucesso</a>
             <a href="#como-funciona" onClick={() => setIsMenuOpen(false)} className="text-lg font-bold text-brand-dark uppercase tracking-widest">Como Funciona</a>
+            <a href="#casos" onClick={() => setIsMenuOpen(false)} className="text-lg font-bold text-brand-dark uppercase tracking-widest">Casos de Sucesso</a>
             <WhatsAppButton text="Falar com a Dra. pelo WhatsApp" fullWidth onClick={() => setIsMenuOpen(false)} />
           </nav>
         </div>
@@ -399,7 +398,7 @@ function App() {
                 A Dra. Fabiana Golembiewski é especialista em tratar negativas de planos de saúde para <strong>cirurgias reparadoras</strong> em todo o Brasil. Atendimento humanizado para recuperar sua saúde e dignidade.
               </p>
               <div className="flex flex-col sm:flex-row items-center gap-6 mb-12 scale-90 sm:scale-100 origin-center lg:origin-left lg:-ml-[2px]">
-                <WhatsAppButton text="Analisar meu caso gratuitamente" variant="dark" pulse icon />
+                <WhatsAppButton text="Analisar meu caso" variant="dark" pulse icon />
               </div>
             </div>
           </div>
@@ -582,12 +581,12 @@ function App() {
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
               <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-white/10 z-0"></div>
               <MethodStep number="1" title="Atendimento Acolhedor" desc="Fale com nossa equipe pelo WhatsApp para um atendimento inicial humanizado e sem robôs." />
-              <MethodStep number="2" title="Análise Especializada" desc="Analisamos sua negativa, pedido médico e laudos de forma detalhada e gratuita." />
+              <MethodStep number="2" title="Análise Especializada" desc="Analisamos sua negativa, pedido médico e laudos de forma detalhada e especializada." />
               <MethodStep number="3" title="Ação Estratégica" desc="Protocolamos o pedido judicial com urgência (Liminar) para garantir seu direito à saúde." />
               <MethodStep number="4" title="Cirurgia Garantida" desc="Com a decisão judicial, o plano torna-se obrigado a custear todo o seu procedimento." />
             </div>
             <div className="mt-16 text-center">
-              <WhatsAppButton text="Iniciar minha análise gratuita" icon pulse />
+              <WhatsAppButton text="Iniciar minha análise" icon pulse />
               <p className="mt-4 text-brand-accent/60 text-sm font-medium">Resposta em menos de 30 minutos em horário comercial</p>
             </div>
           </div>
@@ -638,7 +637,7 @@ function App() {
             </div>
             <div className="w-full md:w-7/12 p-8 md:p-12 bg-white flex flex-col justify-center">
               <h3 className="text-3xl font-serif font-bold text-brand-dark mb-2">Dra. Fabiana Golembiewski</h3>
-              <p className="text-brand-accent font-bold uppercase tracking-widest text-sm mb-6 pb-4 border-b border-brand-medium/30">OAB/SC XXXX</p>
+              <p className="text-brand-accent font-bold uppercase tracking-widest text-sm mb-6 pb-4 border-b border-brand-medium/30">Especialista em Direito da Saúde</p>
               <div className="space-y-4 text-brand-muted leading-relaxed">
                 <p>Com anos de experiência em Direito da Saúde, a Dra. Fabiana se tornou referência na reversão de negativas para cirurgias reparadoras pós-bariátrica.</p>
                 <p>Sua atuação é pautada pelo atendimento humanizado, entendendo que cada caso representa um sonho de saúde e dignidade que foi interrompido indevidamente pelos planos de saúde.</p>
@@ -735,7 +734,7 @@ function App() {
 
             <div className="text-center">
               <p className="text-white/70 text-lg mb-6 font-medium">Se você já disse alguma dessas frases, seu direito pode estar sendo negado.</p>
-              <WhatsAppButton text="Analisar meu caso gratuitamente" icon pulse />
+              <WhatsAppButton text="Analisar meu caso" icon pulse />
             </div>
           </div>
         </section>
@@ -767,20 +766,32 @@ function App() {
               <div className="font-serif text-xl font-bold text-white">Dra. Fabiana Golembiewski</div>
             </div>
             <p className="mb-4 text-white/70 text-base leading-relaxed">Referência em Direito da Saúde. Protegendo vidas e sonhos contra as negativas abusivas dos convênios médicos em todo o Brasil.</p>
-            <p className="font-bold text-brand-accent text-base">OAB/SC XXXX</p>
+            <div className="flex flex-col gap-2 mt-2">
+              <a href="https://instagram.com/fabianagolembiewski" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white/60 hover:text-brand-accent transition-colors text-sm">
+                <Icon name="Instagram" size={16} className="text-brand-accent" /> @fabianagolembiewski
+              </a>
+              <a href="https://instagram.com/fgadvocaciaintegrada" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white/60 hover:text-brand-accent transition-colors text-sm">
+                <Icon name="Instagram" size={16} className="text-brand-accent" /> @fgadvocaciaintegrada
+              </a>
+            </div>
           </div>
           
           <div>
             <h4 className="font-serif font-bold text-white uppercase tracking-widest mb-6 text-xs">Contato e Endereço</h4>
             <ul className="space-y-5 text-base">
               <li>
-                <a href="#" className="inline-flex items-center gap-3 text-white/70 hover:text-brand-accent transition-colors">
-                  <Icon name="Phone" size={20} className="text-brand-accent" /> (47) 99999-9999
+                <a href="tel:+554789205601" className="inline-flex items-center gap-3 text-white/70 hover:text-brand-accent transition-colors">
+                  <Icon name="Phone" size={20} className="text-brand-accent" /> (47) 8920-5601
+                </a>
+              </li>
+              <li>
+                <a href="mailto:fabiana.golk@hotmail.com" className="inline-flex items-center gap-3 text-white/70 hover:text-brand-accent transition-colors">
+                  <Icon name="Mail" size={20} className="text-brand-accent" /> fabiana.golk@hotmail.com
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Icon name="MapPin" size={20} className="mt-1 flex-shrink-0 text-brand-accent" />
-                <span className="text-white/70"><strong>Sede Principal:</strong><br/> Rua Exemplo, 123, Sala 45<br/>Centro, Joinville - SC</span>
+                <span className="text-white/70"><strong>Sede Principal:</strong><br/>Atrás do Fórum Edifício Everest<br/>R. Dona Francisca, 1.113 - Sala 707<br/>Saguaçu, Joinville - SC, 89221-006</span>
               </li>
             </ul>
           </div>
@@ -790,7 +801,7 @@ function App() {
             <ul className="space-y-5 text-base">
               <li className="flex items-center gap-3">
                 <Icon name="Stethoscope" size={20} className="text-brand-accent" />
-                <span className="text-white/70">Análise gratuita de Laudos Médicos</span>
+                <span className="text-white/70">Análise de Exames e Laudos Médicos</span>
               </li>
               <li className="flex items-center gap-3">
                 <Icon name="CreditCard" size={20} className="text-brand-accent" />
