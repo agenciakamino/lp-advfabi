@@ -14,7 +14,7 @@ export default {
           light: '#F7F4EF',
           medium: '#DDD0BB',
           muted: '#6B6057',
-          dark: '#121926',
+          dark: '#1A2B3C',
           accent: '#C9A052',
           hover: '#B8893E',
         }
