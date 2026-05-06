@@ -345,7 +345,7 @@ function App() {
               <Icon name="Scale" className="text-brand-accent" size={24} />
             </div>
             <div>
-              <div className={`font-serif text-lg md:text-xl font-bold tracking-tight leading-none transition-colors ${scrolled ? 'text-brand-dark' : 'text-white'}`}>
+              <div className={`font-serif text-lg md:text-xl font-bold tracking-tight leading-none transition-colors ${scrolled ? 'text-brand-dark' : 'text-brand-dark'}`}>
                 Dra. Fabiana Golembiewski
               </div>
               <div className={`text-[10px] font-bold tracking-widest uppercase mt-1.5 transition-colors ${scrolled ? 'text-brand-accent' : 'text-brand-accent'}`}>
@@ -355,16 +355,16 @@ function App() {
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
-            <a href="/" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Início</a>
-            <a href="#importancia" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>A Cirurgia</a>
-            <a href="#direitos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Seus Direitos</a>
-            <a href="#casos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Casos de Sucesso</a>
-            <a href="#como-funciona" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Como Funciona</a>
+            <a href="/" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}>Início</a>
+            <a href="#importancia" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}>A Cirurgia</a>
+            <a href="#direitos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}>Seus Direitos</a>
+            <a href="#casos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}>Casos de Sucesso</a>
+            <a href="#como-funciona" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-brand-dark hover:text-brand-accent'}`}>Como Funciona</a>
             <WhatsAppButton 
               text="Falar com a Dra." 
               size="sm" 
-              variant={scrolled ? "dark" : "outline"} 
-              className={`hidden lg:flex ${!scrolled ? 'border-white text-white hover:bg-white hover:text-brand-dark' : ''}`} 
+              variant="dark" 
+              className="hidden lg:flex" 
             />
           </nav>
 
