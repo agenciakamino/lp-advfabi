@@ -11,11 +11,11 @@ function FAQItem({ question, answer, highlight }) {
         aria-expanded={isOpen}
         className="w-full text-left px-6 py-6 flex justify-between items-center gap-4 focus:outline-none hover:bg-brand-light"
       >
-        <span className={`font-serif font-bold text-lg ${highlight ? 'text-brand-accent' : 'text-brand-dark'}`}>{question}</span>
+        <span className={`font-serif font-bold text-lg ${highlight ? 'text-brand-dark underline decoration-brand-accent/30 underline-offset-4' : 'text-brand-dark'}`}>{question}</span>
         {isOpen ? (
-          <Icon name="ChevronUp" className="flex-shrink-0 text-brand-accent" size={24} />
+          <Icon name="ChevronUp" className="flex-shrink-0 text-brand-dark" size={24} />
         ) : (
-          <Icon name="ChevronDown" className="flex-shrink-0 text-brand-accent" size={24} />
+          <Icon name="ChevronDown" className="flex-shrink-0 text-brand-dark" size={24} />
         )}
       </button>
       
@@ -23,7 +23,7 @@ function FAQItem({ question, answer, highlight }) {
         className={`px-6 overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 pb-6 opacity-100' : 'max-h-0 opacity-0'}`}
         aria-hidden={!isOpen}
       >
-        <p className="text-slate-600 text-base leading-relaxed pt-4 border-t border-brand-medium/20">
+        <p className="text-brand-muted text-base leading-relaxed pt-4 border-t border-brand-medium/20">
           {answer}
         </p>
       </div>

@@ -11,12 +11,12 @@ export default {
       },
       colors: {
         brand: {
-          light: '#F8FAFC',
-          medium: '#CBD5E1',
-          muted: '#475569',
-          dark: '#0F172A',
-          accent: '#0D9488',
-          hover: '#0F766E',
+          light: '#F7F4EF',
+          medium: '#DDD0BB',
+          muted: '#6B6057',
+          dark: '#0D1B35',
+          accent: '#C9A052',
+          hover: '#B8893E',
         }
       }
     },

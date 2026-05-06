@@ -7,6 +7,8 @@ const iconPaths = {
   MessageCircle: <><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></>,
   ChevronDown: <><path d="m6 9 6 6 6-6"/></>,
   ChevronUp: <><path d="m18 15-6-6-6 6"/></>,
+  ChevronLeft: <><path d="m15 18-6-6 6-6"/></>,
+  ChevronRight: <><path d="m9 18 6-6-6-6"/></>,
   MapPin: <><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></>,
   CreditCard: <><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></>,
   ShieldCheck: <><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2-1 4-2 7-2 2.5 0 4.5 1 6.5 2a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></>,

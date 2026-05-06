@@ -5,6 +5,7 @@ import { WHATSAPP_CONFIG } from '../constants/contact';
 
 const WhatsAppButton = ({ 
   text, 
+  variant,
   outline = false, 
   size = "md", 
   icon = false, 
@@ -15,7 +16,7 @@ const WhatsAppButton = ({
 }) => {
   return (
     <Button 
-      variant={outline ? 'outline' : 'primary'}
+      variant={variant || (outline ? 'outline' : 'primary')}
       size={size}
       pulse={pulse}
       href={href}
