@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, useRef } from 'react';
+import React, { useState, useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Icon from './components/Icon';
@@ -34,7 +34,6 @@ const REAL_QUOTES = [
 const QUOTES_PER_PAGE = 6;
 
 function App() {
-  const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeJourneyStep, setActiveJourneyStep] = useState(null);
@@ -102,18 +101,6 @@ function App() {
       )
     }
   };
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    
-    // Refresh ScrollTrigger periodically to ensure markers and positions are correct
-    ScrollTrigger.refresh();
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
 
   useLayoutEffect(() => {
     let ctx = gsap.context(() => {
@@ -337,28 +324,28 @@ function App() {
       <div className="fixed top-0 left-0 w-full h-1 bg-brand-accent origin-left scale-x-0 z-[100] scroll-progress opacity-60"></div>
 
       {/* HEADER */}
-      <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled || isMenuOpen ? 'bg-white/95 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
+      <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm py-4">
         <div className="w-full mx-auto px-6 lg:px-16 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <div className={`p-2 rounded-xl transition-colors ${scrolled ? 'bg-brand-dark' : 'bg-white/10 backdrop-blur-md border border-white/20'}`}>
+            <div className="p-2 rounded-xl bg-brand-dark">
               <Icon name="Scale" className="text-brand-accent" size={24} />
             </div>
             <div>
-              <div className={`font-serif text-lg md:text-xl font-bold tracking-tight leading-none transition-colors ${scrolled ? 'text-brand-dark' : 'text-brand-dark'}`}>
+              <div className="font-serif text-lg md:text-xl font-bold tracking-tight leading-none text-brand-dark">
                 Dra. Fabiana Golembiewski
               </div>
-              <div className={`text-[10px] font-bold tracking-widest uppercase mt-1.5 transition-colors ${scrolled ? 'text-brand-accent' : 'text-brand-accent'}`}>
+              <div className="text-[10px] font-bold tracking-widest uppercase mt-1.5 text-brand-accent">
                 Especialista em Direito da Saúde
               </div>
             </div>
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
-            <a href="/" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Início</a>
-            <a href="#importancia" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>A Cirurgia</a>
-            <a href="#direitos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Seus Direitos</a>
-            <a href="#como-funciona" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Como Funciona</a>
-            <a href="#casos" className={`text-sm font-bold transition-colors uppercase tracking-wide ${scrolled ? 'text-brand-dark hover:text-brand-accent' : 'text-white hover:text-white/80'}`}>Casos de Sucesso</a>
+            <a href="/" className={"text-sm font-bold transition-colors uppercase tracking-wide text-brand-dark hover:text-brand-accent"}>Início</a>
+            <a href="#importancia" className={"text-sm font-bold transition-colors uppercase tracking-wide text-brand-dark hover:text-brand-accent"}>A Cirurgia</a>
+            <a href="#direitos" className={"text-sm font-bold transition-colors uppercase tracking-wide text-brand-dark hover:text-brand-accent"}>Seus Direitos</a>
+            <a href="#como-funciona" className={"text-sm font-bold transition-colors uppercase tracking-wide text-brand-dark hover:text-brand-accent"}>Como Funciona</a>
+            <a href="#casos" className={"text-sm font-bold transition-colors uppercase tracking-wide text-brand-dark hover:text-brand-accent"}>Casos de Sucesso</a>
             <WhatsAppButton 
               text="Falar com a Dra." 
               size="sm" 
