@@ -1,6 +1,4 @@
-import React, { useState, useLayoutEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { useState, useEffect, useRef } from 'react';
 import Icon from './components/Icon';
 import WhatsAppButton from './components/WhatsAppButton';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
@@ -10,10 +8,8 @@ import FAQItem from './components/FAQItem';
 import Modal from './components/Modal';
 
 // Import images
-import heroImage from './assets/hero.png';
-import bioImage from './assets/sobre-mim.jpg';
-
-gsap.registerPlugin(ScrollTrigger);
+import bioWebp from './assets/sobre-mim.webp';
+import bioJpg from './assets/sobre-mim.jpg';
 
 const REAL_QUOTES = [
   "O plano de saúde negou dizendo que era cirurgia estética.",
@@ -102,220 +98,116 @@ function App() {
     }
   };
 
-  useLayoutEffect(() => {
-    let ctx = gsap.context(() => {
-      let mm = gsap.matchMedia();
+  useEffect(() => {
+    let ctx;
+    let cancelled = false;
 
-      // Scroll Progress Bar
-      gsap.to(".scroll-progress", {
-        scaleX: 1,
-        ease: "none",
-        scrollTrigger: {
-          trigger: "body",
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 0.3
-        }
-      });
+    const init = async () => {
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import('gsap'),
+        import('gsap/ScrollTrigger'),
+      ]);
+      if (cancelled) return;
+      gsap.registerPlugin(ScrollTrigger);
 
-      // Hero Animations
-      mm.add({
-        isDesktop: "(min-width: 1024px)",
-        isMobile: "(max-width: 1023px)"
-      }, (context) => {
-        let { isDesktop } = context.conditions;
-        const tl = gsap.timeline();
+      ctx = gsap.context(() => {
+        gsap.to(".scroll-progress", {
+          scaleX: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: document.documentElement,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: 0.3
+          }
+        });
 
-        if (isDesktop) {
-          tl.fromTo(".hero-image-container", 
-            { clipPath: "inset(0 0 0 100%)" },
-            { clipPath: "inset(0 0 0 0%)", duration: 1, ease: "expo.inOut" }
-          )
-          .from(".hero-image", {
-            scale: 1.1,
-            duration: 1.5,
-            ease: "power3.out"
-          }, 0)
-          .from(".hero-content > div > *", {
-            y: 30,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: "power3.out"
-          }, 0.2)
-          .from(".hero-avatar", {
-            y: 10,
-            opacity: 0,
-            duration: 0.4,
-            stagger: 0.08,
-            ease: "power2.out"
-          }, "-=0.3")
-          .from(".hero-stars svg", {
-            scale: 0.5,
-            opacity: 0,
-            duration: 0.3,
-            stagger: 0.05,
-            ease: "power2.out"
-          }, "-=0.3");
-        } else {
-          tl.from(".hero-content > div > *", {
-            y: 30,
-            opacity: 0,
-            duration: 0.6,
-            stagger: 0.1,
-            ease: "power3.out"
-          })
-          .from(".hero-avatar", {
-            y: 10,
-            opacity: 0,
-            duration: 0.4,
-            stagger: 0.08,
-            ease: "power2.out"
-          }, "-=0.4")
-          .from(".hero-stars svg", {
-            scale: 0.5,
-            opacity: 0,
-            duration: 0.3,
-            stagger: 0.05,
-            ease: "power2.out"
-          }, "-=0.3")
-          .fromTo(".hero-image-container", 
-            { clipPath: "inset(0 0 0 100%)" },
-            { clipPath: "inset(0 0 0 0%)", duration: 1, ease: "expo.inOut" },
-            0.15
-          )
-          .from(".hero-image", {
-            scale: 1.1,
-            duration: 1.5,
-            ease: "power3.out"
-          }, 0.15);
-        }
-      });
-
-      // Parallax
-      const parallaxImages = gsap.utils.toArray('.parallax-img');
-      if (parallaxImages.length > 0) {
+        const parallaxImages = gsap.utils.toArray('.parallax-img');
         parallaxImages.forEach((img) => {
           const container = img.closest('.parallax-container');
           if (container) {
             gsap.to(img, {
-              scrollTrigger: {
-                trigger: container,
-                start: "top top",
-                end: "bottom top",
-                scrub: true
-              },
+              scrollTrigger: { trigger: container, start: "top top", end: "bottom top", scrub: true },
               y: 40,
               ease: "none"
             });
           }
         });
-      }
 
-      const staggeredLists = [
-        { parent: ".problem-list", items: ".problem-list li", x: -20 },
-        { parent: ".solution-list", items: ".solution-list > div", x: -20 },
-        { parent: ".negativas-grid", items: ".negativas-grid > div", y: 20 },
-        { parent: ".authority-cards", items: ".authority-cards > div", y: 20 }
-      ];
+        const staggeredLists = [
+          { parent: ".solution-list", items: ".solution-list > div", x: -20 },
+          { parent: ".negativas-grid", items: ".negativas-grid > div", y: 20 },
+          { parent: ".authority-cards", items: ".authority-cards > div", y: 20 }
+        ];
 
-      staggeredLists.forEach(list => {
-        const elements = gsap.utils.toArray(list.items);
-        if (elements.length > 0) {
-          gsap.from(elements, {
-            scrollTrigger: {
-              trigger: list.parent,
-              start: "top 90%",
-            },
-            x: list.x || 0,
-            y: list.y || 0,
+        staggeredLists.forEach(list => {
+          const elements = gsap.utils.toArray(list.items);
+          if (elements.length > 0) {
+            gsap.from(elements, {
+              scrollTrigger: { trigger: list.parent, start: "top 90%" },
+              x: list.x || 0,
+              y: list.y || 0,
+              opacity: 0,
+              stagger: 0.08,
+              duration: 0.5,
+              ease: "power2.out"
+            });
+          }
+        });
+
+        const transCards = gsap.utils.toArray(".transformation-grid > div");
+        if (transCards.length > 0) {
+          gsap.from(transCards, {
             opacity: 0,
-            stagger: 0.08,
-            duration: 0.5,
-            ease: "power2.out"
-          });
-        }
-      });
-
-      // Transformation Cards
-      const transCards = gsap.utils.toArray(".transformation-grid > div");
-      if (transCards.length > 0) {
-        gsap.fromTo(transCards, 
-          { opacity: 0, y: 30 },
-          {
-            opacity: 1,
-            y: 0,
+            y: 30,
             stagger: 0.1,
             duration: 0.5,
             ease: "power3.out",
-            scrollTrigger: {
-              trigger: ".transformation-grid",
-              start: "top 85%",
-            }
-          }
-        );
-      }
+            scrollTrigger: { trigger: ".transformation-grid", start: "top 85%" }
+          });
+        }
 
-      const reviews = gsap.utils.toArray(".reviews-grid .review-card");
-      if (reviews.length > 0) {
-        gsap.set(reviews, { opacity: 0, y: 30 });
-        gsap.to(reviews, {
-          scrollTrigger: {
-            trigger: ".reviews-grid",
-            start: "top 92%",
-          },
-          y: 0,
-          opacity: 1,
-          stagger: 0.1,
+        const reviews = gsap.utils.toArray(".reviews-grid .review-card");
+        if (reviews.length > 0) {
+          gsap.from(reviews, {
+            scrollTrigger: { trigger: ".reviews-grid", start: "top 92%" },
+            y: 30,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 0.8,
+            ease: "power2.out"
+          });
+        }
+
+        const faqs = gsap.utils.toArray(".faq-item");
+        if (faqs.length > 0) {
+          gsap.from(faqs, {
+            scrollTrigger: { trigger: ".faq-list", start: "top 92%" },
+            y: 30,
+            opacity: 0,
+            stagger: 0.12,
+            duration: 0.8,
+            ease: "power3.out"
+          });
+        }
+
+        gsap.from(".method-step", {
+          scrollTrigger: { trigger: "#como-funciona .grid", start: "top 80%" },
+          y: 20,
+          opacity: 0,
+          stagger: 0.15,
           duration: 0.8,
-          ease: "power2.out"
-        });
-      }
-
-      const faqs = gsap.utils.toArray(".faq-item");
-      if (faqs.length > 0) {
-        gsap.set(faqs, { opacity: 0, y: 30 });
-        gsap.to(faqs, {
-          scrollTrigger: {
-            trigger: ".faq-list",
-            start: "top 92%",
-          },
-          y: 0,
-          opacity: 1,
-          stagger: 0.12,
-          duration: 0.8,
-          ease: "power3.out"
-        });
-      }
-
-      ScrollTrigger.refresh();
-
-      gsap.from(".method-step", {
-        scrollTrigger: {
-          trigger: "#como-funciona .grid",
-          start: "top 80%",
-        },
-        y: 20,
-        opacity: 0,
-        stagger: 0.15,
-        duration: 0.8,
-        ease: "power4.out"
-      });
-
-      gsap.utils.toArray('section h2').forEach((header) => {
-        gsap.from(header, {
-          scrollTrigger: {
-            trigger: header,
-            start: "top 95%",
-          },
-          y: "100%",
-          duration: 1,
           ease: "power4.out"
         });
-      });
-    }, mainRef);
+      }, mainRef);
+    };
 
-    return () => ctx.revert();
+    init();
+
+    return () => {
+      cancelled = true;
+      ctx?.revert();
+    };
   }, []);
 
   return (
@@ -334,7 +226,7 @@ function App() {
               <div className="font-serif text-lg md:text-xl font-bold tracking-tight leading-none text-brand-dark">
                 Dra. Fabiana Golembiewski
               </div>
-              <div className="text-[10px] font-bold tracking-widest uppercase mt-1.5 text-brand-accent">
+              <div className="text-[10px] font-bold tracking-widest uppercase mt-1.5 text-brand-muted">
                 Especialista em Direito da Saúde
               </div>
             </div>
@@ -354,7 +246,7 @@ function App() {
             />
           </nav>
 
-          <button className="md:hidden p-2 text-brand-dark" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button className="md:hidden p-2 text-brand-dark" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={isMenuOpen}>
             <Icon name={isMenuOpen ? "X" : "Menu"} size={28} />
           </button>
         </div>
@@ -378,7 +270,7 @@ function App() {
             <div className="w-full max-w-xl text-center lg:text-left flex flex-col items-center lg:items-start">
               <div className="overflow-hidden">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-[1.1] mb-8 text-brand-dark">
-                  Negativa de Cirurgia após Bariátrica? <span className="text-brand-accent italic underline decoration-brand-accent/30 underline-offset-8">Seu direito garantido.</span>
+                  Negativa de Cirurgia após Bariátrica? <span className="text-brand-amber italic underline decoration-brand-amber/40 underline-offset-8">Seu direito garantido.</span>
                 </h1>
               </div>
               <p className="text-xl text-brand-muted mb-10 leading-relaxed">
@@ -389,13 +281,28 @@ function App() {
               </div>
             </div>
           </div>
-          <div className="w-full lg:w-1/2 relative min-h-[400px] lg:min-h-screen order-2 lg:order-2 overflow-hidden hero-image-container parallax-container">
-            <img 
-              src={heroImage}
-              alt="Advogada Dra. Fabiana Golembiewski"
-              className="absolute top-0 left-0 w-full h-full object-cover object-top lg:object-center hero-image"
-              loading="eager"            />
+          <div className="w-full lg:w-1/2 relative min-h-[400px] lg:min-h-screen order-2 lg:order-2 overflow-hidden hero-image-container parallax-container bg-brand-dark">
+            <picture>
+              <source media="(max-width: 1023px)" type="image/avif" srcSet="/hero-mobile.avif" />
+              <source media="(max-width: 1023px)" type="image/webp" srcSet="/hero-mobile.webp" />
+              <source media="(max-width: 1023px)" type="image/jpeg" srcSet="/hero-mobile.jpg" />
+              <source type="image/avif" srcSet="/hero.avif" />
+              <source type="image/webp" srcSet="/hero.webp" />
+              <source type="image/jpeg" srcSet="/hero.jpg" />
+              <img
+                src="/hero.jpg"
+                alt="Advogada Dra. Fabiana Golembiewski, especialista em direito da saúde"
+                width="1200"
+                height="1200"
+                className="absolute top-0 left-0 w-full h-full object-cover object-top lg:object-center hero-image"
+                style={{ willChange: 'transform' }}
+                loading="eager"
+                decoding="async"
+                {...{ fetchpriority: 'high' }}
+              />
+            </picture>
             <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/90 via-brand-dark/20 to-transparent"></div>
+            <div className="hero-reveal-overlay absolute inset-0 bg-brand-dark z-20 pointer-events-none" style={{ willChange: 'transform' }}></div>
             <div className="absolute bottom-10 left-8 right-8 lg:bottom-12 lg:left-12 lg:right-12 text-white">
               <p className="text-lg md:text-xl lg:text-2xl font-serif italic font-medium leading-tight max-w-sm drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">"O emagrecimento foi só o começo. O seu espelho precisa refletir a sua vitória por completo."</p>
             </div>
@@ -406,9 +313,9 @@ function App() {
         <section id="importancia" className="py-24 px-6 bg-white border-t border-brand-medium/30 scroll-mt-24">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-16">
-              <span className="text-brand-accent font-bold tracking-widest uppercase text-xs mb-4 block">Sua Jornada</span>
+              <span className="inline-block bg-brand-dark text-brand-accent font-bold tracking-widest uppercase text-xs mb-6 px-3 py-1 rounded-full">Sua Jornada</span>
               <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-4 uppercase tracking-tight">
-                O Caminho para a sua <span className="text-brand-accent italic underline decoration-brand-accent/20 underline-offset-4">Nova Vida</span>
+                O Caminho para a sua <span className="text-brand-amber italic underline decoration-brand-amber/30 underline-offset-4">Nova Vida</span>
               </h2>
               <p className="text-lg text-brand-muted max-w-2xl mx-auto font-medium">
                 Sua jornada não é apenas um processo judicial, é a retomada da sua dignidade em três etapas fundamentais.
@@ -417,35 +324,35 @@ function App() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 transformation-grid">
               <div 
                 onClick={() => setActiveJourneyStep('ecossistema')}
-                className="bg-brand-light p-10 border border-brand-medium/50 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-all duration-500 cursor-pointer"
+                className="bg-brand-light p-10 border border-brand-medium/50 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-[background-color,box-shadow] duration-500 cursor-pointer"
               >
                 <div className="w-16 h-16 bg-brand-dark/10 rounded-full flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 transition-transform">
                   <Icon name="Users" size={32} />
                 </div>
                 <h3 className="text-xl font-serif font-bold text-brand-dark mb-4">Ecossistema de Saúde</h3>
                 <p className="text-brand-muted leading-relaxed mb-6">Nosso diferencial é não tratar o seu caso apenas como um processo judicial isolado. Construímos uma rede de suporte com parceiros especialistas, assessoria em exames e em laudos.</p>
-                <span className="text-brand-accent font-bold text-sm uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 transition-all">
+                <span className="text-brand-dark font-bold text-sm uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 group-hover:text-brand-hover transition-all">
                   Saiba mais <Icon name="ArrowRight" size={16} />
                 </span>
               </div>
 
               <div 
                 onClick={() => setActiveJourneyStep('inicio')}
-                className="bg-brand-light p-10 border border-brand-medium/50 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-all duration-500 cursor-pointer"
+                className="bg-brand-light p-10 border border-brand-medium/50 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-[background-color,box-shadow] duration-500 cursor-pointer"
               >
                 <div className="w-16 h-16 bg-brand-dark/10 rounded-full flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 transition-transform">
                   <Icon name="Activity" size={32} />
                 </div>
                 <h3 className="text-xl font-serif font-bold text-brand-dark mb-4">O Início da Mudança</h3>
                 <p className="text-brand-muted leading-relaxed mb-6">A cirurgia bariátrica é o marco zero da sua nova vida, mas ela gera obrigações contratuais que o plano muitas vezes tenta ignorar. Garantimos cobertura integral e segurança jurídica.</p>
-                <span className="text-brand-accent font-bold text-sm uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 transition-all">
+                <span className="text-brand-dark font-bold text-sm uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 group-hover:text-brand-hover transition-all">
                   Saiba mais <Icon name="ArrowRight" size={16} />
                 </span>
               </div>
 
               <div 
                 onClick={() => setActiveJourneyStep('cereja')}
-                className="bg-brand-light p-10 border border-brand-medium/50 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-all duration-500 relative overflow-hidden cursor-pointer"
+                className="bg-brand-light p-10 border border-brand-medium/50 flex flex-col items-center text-center group hover:bg-white hover:shadow-xl transition-[background-color,box-shadow] duration-500 relative overflow-hidden cursor-pointer"
               >
                 <div className="absolute top-0 right-0 bg-brand-dark text-brand-accent text-[10px] font-bold px-3 py-1 uppercase tracking-widest border-l border-b border-brand-accent/20">Destaque</div>
                 <div className="w-16 h-16 bg-brand-dark/10 rounded-full flex items-center justify-center text-brand-dark mb-6 group-hover:scale-110 transition-transform">
@@ -453,7 +360,7 @@ function App() {
                 </div>
                 <h3 className="text-xl font-serif font-bold text-brand-dark mb-4">Cobertura das Cirurgias Reparadoras</h3>
                 <p className="text-brand-muted leading-relaxed mb-6">A retirada do excesso de pele após o emagrecimento é uma das etapas mais negadas pelos planos. Mas a Justiça é clara: não é estética, é a continuidade necessária do seu tratamento.</p>
-                <span className="text-brand-accent font-bold text-sm uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 transition-all">
+                <span className="text-brand-dark font-bold text-sm uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 group-hover:text-brand-hover transition-all">
                   Saiba mais <Icon name="ArrowRight" size={16} />
                 </span>
               </div>
@@ -470,9 +377,9 @@ function App() {
             <div className="w-full md:w-1/2 py-20 px-8 lg:px-20 flex flex-col justify-center items-center md:items-start text-center md:text-left">
               <div className="max-w-2xl mr-auto">
                 <div className="overflow-hidden">
-                  <span className="text-brand-accent font-bold tracking-widest uppercase text-xs mb-4 block">Procedimentos</span>
+                  <span className="inline-block bg-brand-dark text-brand-accent font-bold tracking-widest uppercase text-xs mb-6 px-3 py-1 rounded-full">Procedimentos</span>
                   <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-4 leading-tight uppercase">
-                    Cirurgias <span className="text-brand-accent italic underline decoration-brand-accent/20 underline-offset-4">Reparadoras comuns</span> após a Bariátrica
+                    Cirurgias <span className="text-brand-amber italic underline decoration-brand-amber/30 underline-offset-4">Reparadoras comuns</span> após a Bariátrica
                   </h2>
                 </div>
                 <p className="text-brand-muted italic mb-6 font-serif text-lg">Com laudo médico, as mais realizadas incluem:</p>
@@ -502,12 +409,15 @@ function App() {
                 </div>
               </div>
             </div>
-            <div className="w-full md:w-1/2 relative min-h-[500px] overflow-hidden parallax-container">
-              <img 
-                src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=80" 
-                alt="Atendimento Especializado Dra. Fabiana" 
+            <div className="w-full md:w-1/2 relative min-h-[500px] overflow-hidden parallax-container bg-brand-dark">
+              <img
+                src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1200&q=75&fm=webp"
+                alt="Atendimento jurídico especializado em Direito da Saúde"
                 loading="lazy"
-                className="absolute -top-[10%] left-0 w-full h-[120%] object-cover parallax-img" 
+                decoding="async"
+                width="1200"
+                height="900"
+                className="absolute -top-[10%] left-0 w-full h-[120%] object-cover parallax-img"
               />
             </div>
           </div>
@@ -517,9 +427,9 @@ function App() {
         <section className="py-20 px-6 bg-white border-t border-brand-medium/30">
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-12">
-              <span className="text-brand-accent font-bold tracking-widest uppercase text-xs mb-4 block">Justiça e Direitos</span>
+              <span className="inline-block bg-brand-dark text-brand-accent font-bold tracking-widest uppercase text-xs mb-6 px-3 py-1 rounded-full">Justiça e Direitos</span>
               <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-4">
-                O que o seu plano <span className="text-brand-accent italic underline decoration-brand-accent/20 underline-offset-4">alegou para negar</span>?
+                O que o seu plano <span className="text-brand-amber italic underline decoration-brand-amber/30 underline-offset-4">alegou para negar</span>?
               </h2>
               <p className="text-brand-muted text-lg">Mesmo com a guia do seu médico, os convênios usam desculpas padrão para não pagar a cirurgia. <strong>Nenhuma delas está acima da sua saúde.</strong></p>
             </div>
@@ -574,7 +484,7 @@ function App() {
             </div>
             <div className="mt-16 text-center">
               <WhatsAppButton text="Iniciar minha análise" icon pulse />
-              <p className="mt-4 text-brand-accent/60 text-sm font-medium">Resposta em menos de 30 minutos em horário comercial</p>
+              <p className="mt-4 text-brand-accent text-sm font-medium">Resposta em menos de 30 minutos em horário comercial</p>
             </div>
           </div>
         </section>
@@ -583,10 +493,13 @@ function App() {
         <section className="py-0 bg-white">
           <div className="flex flex-col md:flex-row md:min-h-screen">
             <div
-              className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen relative overflow-hidden parallax-container cursor-pointer group"
+              className="w-full md:w-1/2 min-h-[50vh] md:min-h-screen relative overflow-hidden parallax-container cursor-pointer group bg-brand-dark"
               onClick={() => setIsModalOpen(true)}
             >
-              <img src={bioImage} alt="Dra. Fabiana" loading="lazy" className="absolute top-0 left-0 w-full h-full object-cover object-top transition-transform duration-700" />
+              <picture>
+                <source srcSet={bioWebp} type="image/webp" />
+                <img src={bioJpg} alt="Dra. Fabiana Golembiewski, advogada em Direito da Saúde" width="1000" height="1000" loading="lazy" decoding="async" className="absolute top-0 left-0 w-full h-full object-cover object-top transition-transform duration-700" />
+              </picture>
               <div className="absolute inset-0 bg-brand-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <div className="bg-white/90 p-4 rounded-full transform scale-90 group-hover:scale-100 transition-transform">
                   <Icon name="Maximize2" className="text-brand-accent" size={24} />
@@ -594,7 +507,7 @@ function App() {
               </div>
             </div>
             <div className="w-full md:w-1/2 p-10 lg:p-20 flex flex-col justify-center text-center md:text-left items-center md:items-start min-h-[50vh] md:min-h-screen">
-              <div className="inline-block px-4 py-1.5 bg-brand-light border border-brand-medium rounded-full text-xs font-bold text-brand-accent uppercase tracking-widest mb-6 w-max">
+              <div className="inline-block px-4 py-1.5 bg-brand-dark rounded-full text-xs font-bold text-brand-accent uppercase tracking-widest mb-6 w-max">
                 Experiência em Direito da Saúde
               </div>
               <h2 className="text-3xl md:text-5xl font-serif font-bold text-brand-dark mb-6">Dra. Fabiana Golembiewski</h2>
@@ -620,7 +533,10 @@ function App() {
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
           <div className="flex flex-col md:flex-row">
             <div className="w-full md:w-5/12 h-[300px] md:h-auto min-h-[400px]">
-              <img src={bioImage} alt="Dra. Fabiana Golembiewski" className="w-full h-full object-cover object-top" />
+              <picture>
+                <source srcSet={bioWebp} type="image/webp" />
+                <img src={bioJpg} alt="Dra. Fabiana Golembiewski" width="1000" height="1000" loading="lazy" decoding="async" className="w-full h-full object-cover object-top" />
+              </picture>
             </div>
             <div className="w-full md:w-7/12 p-8 md:p-12 bg-white flex flex-col justify-center">
               <h3 className="text-3xl font-serif font-bold text-brand-dark mb-2">Dra. Fabiana Golembiewski</h3>
@@ -699,13 +615,21 @@ function App() {
               <button
                 onClick={() => changePage(Math.max(0, quotePage - 1))}
                 disabled={quotePage === 0}
+                aria-label="Depoimentos anteriores"
                 className="w-10 h-10 flex items-center justify-center border border-white/20 text-white disabled:opacity-20 hover:border-brand-accent hover:text-brand-accent transition-colors"
               >
                 <Icon name="ChevronLeft" size={20} />
               </button>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3" role="tablist" aria-label="Páginas de depoimentos">
                 {Array.from({ length: totalQuotePages }).map((_, i) => (
-                  <button key={i} onClick={() => changePage(i)} className="p-1 leading-none">
+                  <button
+                    key={i}
+                    onClick={() => changePage(i)}
+                    className="p-1 leading-none"
+                    role="tab"
+                    aria-selected={i === quotePage}
+                    aria-label={`Ir para página ${i + 1} de ${totalQuotePages}`}
+                  >
                     <span className={`block w-2.5 h-2.5 rounded-full transition-colors ${i === quotePage ? 'bg-brand-accent' : 'bg-white/25 hover:bg-white/50'}`} />
                   </button>
                 ))}
@@ -713,6 +637,7 @@ function App() {
               <button
                 onClick={() => changePage(Math.min(totalQuotePages - 1, quotePage + 1))}
                 disabled={quotePage === totalQuotePages - 1}
+                aria-label="Próximos depoimentos"
                 className="w-10 h-10 flex items-center justify-center border border-white/20 text-white disabled:opacity-20 hover:border-brand-accent hover:text-brand-accent transition-colors"
               >
                 <Icon name="ChevronRight" size={20} />
@@ -802,7 +727,7 @@ function App() {
           </div>
         </div>
         
-        <div className="max-w-6xl mx-auto text-center pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-white/40">
+        <div className="max-w-6xl mx-auto text-center pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-white/60">
           <p>© {new Date().getFullYear()} Fabiana Golembiewski Advocacia. Todos os direitos reservados.</p>
         </div>
       </footer>
