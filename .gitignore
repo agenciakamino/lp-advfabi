@@ -34,3 +34,9 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# WordPress backup (production snapshot)
+wordpress-backup/
+
+# Briefings de conteúdo / material de referência (não versionar)
+docs/
