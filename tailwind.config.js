@@ -16,7 +16,8 @@ export default {
           muted: '#6B6057',
           dark: '#1A2B3C',
           accent: '#C9A052',
-          hover: '#B8893E',
+          amber: '#A57626',
+          hover: '#D8B262',
         }
       }
     },

@@ -11,8 +11,8 @@ const Button = ({
   const baseStyles = "inline-flex items-center justify-center gap-2 font-bold rounded-full transition-all duration-300 w-full sm:w-auto text-center relative overflow-hidden";
   
   const variants = {
-    primary: "bg-brand-accent text-white shadow-lg hover:bg-brand-hover transform hover:-translate-y-1 active:scale-95",
-    outline: "bg-transparent border-2 border-brand-accent text-brand-accent hover:bg-brand-accent hover:text-white transform hover:-translate-y-1 active:scale-95",
+    primary: "bg-brand-accent text-brand-dark shadow-lg hover:bg-brand-hover hover:shadow-[0_8px_18px_-4px_rgba(201,160,82,0.35)] transform hover:-translate-y-1 active:scale-95",
+    outline: "bg-transparent border-2 border-brand-accent text-brand-accent hover:bg-brand-hover hover:border-brand-hover hover:text-brand-dark transform hover:-translate-y-1 active:scale-95",
     dark: "bg-brand-dark text-white border border-white/10 shadow-lg hover:bg-[#1a2333] transform hover:-translate-y-1 active:scale-95",
   };
 
