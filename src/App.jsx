@@ -73,8 +73,8 @@ function App() {
         <div className="space-y-4">
           <p>A cirurgia bariátrica é o marco zero da sua nova vida, mas ela gera obrigações contratuais que o plano muitas vezes tenta ignorar:</p>
           <ul className="space-y-2 list-disc pl-5 text-brand-muted">
-            <li><strong>Cobertura Integral:</strong> Garantimos que todo o custo médico, hospitalar e de materiais sejam cobertos.</li>
-            <li><strong>Assessoria dos Requisitos:</strong> Análise e orientação estratégica sobre todos os critérios exigidos pelo plano e pelo Judiciário, garantindo que seu pedido esteja completo, com laudos, exames e indicação médica adequados para aumentar significativamente as chances de aprovação.</li>
+            <li><strong>Cobertura Integral:</strong> Buscamos que todo o custo médico, hospitalar e de materiais seja coberto.</li>
+            <li><strong>Assessoria dos Requisitos:</strong> Análise e orientação estratégica sobre todos os critérios exigidos pelo plano e pelo Judiciário, para que seu pedido esteja completo, com laudos, exames e indicação médica adequados para aumentar significativamente as chances de aprovação.</li>
             <li><strong>Quebra de Carência:</strong> Em casos de urgência metabólica ou complicações, atuamos para antecipar o procedimento.</li>
             <li><strong>Segurança Jurídica:</strong> Proteção contra cancelamentos arbitrários de contrato durante o tratamento.</li>
           </ul>
@@ -270,7 +270,7 @@ function App() {
             <div className="w-full max-w-xl text-center lg:text-left flex flex-col items-center lg:items-start">
               <div className="overflow-hidden">
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold leading-[1.1] mb-8 text-brand-dark">
-                  Negativa de Cirurgia após Bariátrica? <span className="text-brand-amber italic underline decoration-brand-amber/40 underline-offset-8">Seu direito garantido.</span>
+                  Negativa de Cirurgia após Bariátrica? <span className="text-brand-amber italic underline decoration-brand-amber/40 underline-offset-8">A negativa pode ser revertida.</span>
                 </h1>
               </div>
               <p className="text-xl text-brand-muted mb-10 leading-relaxed">
@@ -344,7 +344,7 @@ function App() {
                   <Icon name="Activity" size={32} />
                 </div>
                 <h3 className="text-xl font-serif font-bold text-brand-dark mb-4">O Início da Mudança</h3>
-                <p className="text-brand-muted leading-relaxed mb-6">A cirurgia bariátrica é o marco zero da sua nova vida, mas ela gera obrigações contratuais que o plano muitas vezes tenta ignorar. Garantimos cobertura integral e segurança jurídica.</p>
+                <p className="text-brand-muted leading-relaxed mb-6">A cirurgia bariátrica é o marco zero da sua nova vida, mas ela gera obrigações contratuais que o plano muitas vezes tenta ignorar. Atuamos pela cobertura integral e pela segurança jurídica.</p>
                 <span className="text-brand-dark font-bold text-sm uppercase tracking-widest flex items-center gap-2 group-hover:gap-3 group-hover:text-brand-hover transition-all">
                   Saiba mais <Icon name="ArrowRight" size={16} />
                 </span>
@@ -366,7 +366,7 @@ function App() {
               </div>
             </div>
             <div className="flex flex-col items-center">
-              <WhatsAppButton text="QUERO INICIAR MINHA TRANSFORMAÇÃO" size="lg" icon pulse />
+              <WhatsAppButton text="QUERO ANALISAR MEU CASO" size="lg" icon pulse />
             </div>
           </div>
         </section>
@@ -474,17 +474,17 @@ function App() {
           <div className="max-w-6xl mx-auto text-center w-full py-24">
             <span className="text-brand-accent font-bold tracking-widest uppercase text-xs mb-4 block">Nosso Método</span>
             <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-4">Como <span className="text-brand-accent italic underline decoration-brand-accent/30 underline-offset-4">revertemos essa situação</span>?</h2>
-            <p className="text-white/70 text-lg mb-16 max-w-2xl mx-auto font-medium">Um método humanizado e focado em resultados, conduzido com a seriedade e o acolhimento que o seu caso merece.</p>
+            <p className="text-white/70 text-lg mb-16 max-w-2xl mx-auto font-medium">Um método humanizado, conduzido com a seriedade e o acolhimento que o seu caso merece.</p>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
               <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-white/10 z-0"></div>
               <MethodStep number="1" title="Atendimento Acolhedor" desc="Fale com nossa equipe pelo WhatsApp para um atendimento inicial humanizado e sem robôs." />
               <MethodStep number="2" title="Análise Especializada" desc="Analisamos sua negativa, pedido médico e laudos de forma detalhada e especializada." />
-              <MethodStep number="3" title="Ação Estratégica" desc="Protocolamos o pedido judicial com urgência (Liminar) para garantir seu direito à saúde." />
-              <MethodStep number="4" title="Cirurgia Garantida" desc="Com a decisão judicial, o plano torna-se obrigado a custear todo o seu procedimento." />
+              <MethodStep number="3" title="Ação Estratégica" desc="Protocolamos o pedido judicial com urgência (Liminar) em defesa do seu direito à saúde." />
+              <MethodStep number="4" title="Decisão Judicial" desc="Com a decisão judicial, o plano torna-se obrigado a custear todo o seu procedimento." />
             </div>
             <div className="mt-16 text-center">
               <WhatsAppButton text="Iniciar minha análise" icon pulse />
-              <p className="mt-4 text-brand-accent text-sm font-medium">Resposta em menos de 30 minutos em horário comercial</p>
+              <p className="mt-4 text-brand-accent text-sm font-medium">Atendimento em horário comercial</p>
             </div>
           </div>
         </section>
@@ -658,7 +658,7 @@ function App() {
               <div className="space-y-4 faq-list">
               <FAQItem question="Atendem SUS ou só Plano de Saúde?" answer="Atuamos contra planos de saúde e contra o SUS." />
               <FAQItem question="Quanto tempo demora para o juiz decidir?" answer="Com bons laudos, o juiz costuma analisar a Liminar em questão de dias." />
-              <FAQItem question="Como funciona o pagamento dos honorários?" answer="Oferecemos condições facilitadas com parcelamento em até 10x sem juros no cartão de crédito. O financeiro não será a barreira para sua saúde." highlight />
+              <FAQItem question="Como funciona o pagamento dos honorários?" answer="As condições de honorários são tratadas de forma transparente na consulta inicial, conforme cada caso." highlight />
               <FAQItem question="O plano pode cancelar meu contrato?" answer="De forma alguma! É proibido por lei o plano cancelar ou retaliar você por buscar seus direitos." />
               </div>            <div className="mt-16 text-center bg-brand-dark p-10 rounded-2xl border border-white/5 shadow-2xl relative overflow-hidden group">
               <h3 className="text-2xl font-serif font-bold text-white mb-4 relative z-10">Ainda tem dúvidas?</h3>
@@ -677,6 +677,7 @@ function App() {
               <Icon name="Scale" className="text-brand-accent" size={28} />
               <div className="font-serif text-xl font-bold text-white">Dra. Fabiana Golembiewski</div>
             </div>
+            <p className="mb-1 text-white/60 text-sm">OAB/SC 67.289</p>
             <p className="mb-4 text-white/70 text-base leading-relaxed">Referência em Direito da Saúde. Protegendo vidas e sonhos contra as negativas abusivas dos convênios médicos em todo o Brasil.</p>
             <div className="flex flex-col gap-2 mt-2">
               <a href="https://instagram.com/fabianagolembiewski" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white/60 hover:text-brand-accent transition-colors text-sm">
@@ -716,10 +717,6 @@ function App() {
                 <span className="text-white/70">Análise de Exames e Laudos Médicos</span>
               </li>
               <li className="flex items-center gap-3">
-                <Icon name="CreditCard" size={20} className="text-brand-accent" />
-                <span className="text-white/70">Honorários em até 10x sem juros</span>
-              </li>
-              <li className="flex items-center gap-3">
                 <Icon name="Clock" size={20} className="text-brand-accent" />
                 <span className="text-white/70">Atendimento em todo o Brasil</span>
               </li>
@@ -728,7 +725,7 @@ function App() {
         </div>
         
         <div className="max-w-6xl mx-auto text-center pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-white/60">
-          <p>© {new Date().getFullYear()} Fabiana Golembiewski Advocacia. Todos os direitos reservados.</p>
+          <p>© {new Date().getFullYear()} Fabiana Golembiewski Advocacia. OAB/SC 67.289. Todos os direitos reservados.</p>
         </div>
       </footer>
       <FloatingWhatsApp />
