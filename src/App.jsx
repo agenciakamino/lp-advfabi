@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Icon from './components/Icon';
 import WhatsAppButton from './components/WhatsAppButton';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
+import LeadFormModal from './components/LeadFormModal';
 import MethodStep from './components/MethodStep';
 import ReviewCard from './components/ReviewCard';
 import FAQItem from './components/FAQItem';
@@ -10,6 +11,7 @@ import Modal from './components/Modal';
 // Import images
 import bioWebp from './assets/sobre-mim.webp';
 import bioJpg from './assets/sobre-mim.jpg';
+import logoMark from './assets/logo-fg-mark.png';
 
 const REAL_QUOTES = [
   "O plano de saúde negou dizendo que era cirurgia estética.",
@@ -219,8 +221,8 @@ function App() {
       <header className="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-sm py-4">
         <div className="w-full mx-auto px-6 lg:px-16 flex justify-between items-center">
           <div className="flex items-center gap-4">
-            <div className="p-2 rounded-xl bg-brand-dark">
-              <Icon name="Scale" className="text-brand-accent" size={24} />
+            <div className="p-2 rounded-xl bg-brand-dark flex items-center justify-center">
+              <img src={logoMark} alt="FG Advocacia" className="h-6 w-auto" />
             </div>
             <div>
               <div className="font-serif text-lg md:text-xl font-bold tracking-tight leading-none text-brand-dark">
@@ -292,8 +294,8 @@ function App() {
               <img
                 src="/hero.jpg"
                 alt="Advogada Dra. Fabiana Golembiewski, especialista em direito da saúde"
-                width="1200"
-                height="1200"
+                width="853"
+                height="853"
                 className="absolute top-0 left-0 w-full h-full object-cover object-top lg:object-center hero-image"
                 style={{ willChange: 'transform' }}
                 loading="eager"
@@ -498,7 +500,7 @@ function App() {
             >
               <picture>
                 <source srcSet={bioWebp} type="image/webp" />
-                <img src={bioJpg} alt="Dra. Fabiana Golembiewski, advogada em Direito da Saúde" width="1000" height="1000" loading="lazy" decoding="async" className="absolute top-0 left-0 w-full h-full object-cover object-top transition-transform duration-700" />
+                <img src={bioJpg} alt="Dra. Fabiana Golembiewski, advogada em Direito da Saúde" width="853" height="853" loading="lazy" decoding="async" className="absolute top-0 left-0 w-full h-full object-cover object-top transition-transform duration-700" />
               </picture>
               <div className="absolute inset-0 bg-brand-dark/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                 <div className="bg-white/90 p-4 rounded-full transform scale-90 group-hover:scale-100 transition-transform">
@@ -535,7 +537,7 @@ function App() {
             <div className="w-full md:w-5/12 h-[300px] md:h-auto min-h-[400px]">
               <picture>
                 <source srcSet={bioWebp} type="image/webp" />
-                <img src={bioJpg} alt="Dra. Fabiana Golembiewski" width="1000" height="1000" loading="lazy" decoding="async" className="w-full h-full object-cover object-top" />
+                <img src={bioJpg} alt="Dra. Fabiana Golembiewski" width="853" height="853" loading="lazy" decoding="async" className="w-full h-full object-cover object-top" />
               </picture>
             </div>
             <div className="w-full md:w-7/12 p-8 md:p-12 bg-white flex flex-col justify-center">
@@ -674,7 +676,7 @@ function App() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 border-b border-white/10 pb-12">
           <div>
             <div className="flex items-center gap-2 mb-6">
-              <Icon name="Scale" className="text-brand-accent" size={28} />
+              <img src={logoMark} alt="FG Advocacia" className="h-8 w-auto" />
               <div className="font-serif text-xl font-bold text-white">Dra. Fabiana Golembiewski</div>
             </div>
             <p className="mb-1 text-white/60 text-sm">OAB/SC 67.289</p>
@@ -729,6 +731,7 @@ function App() {
         </div>
       </footer>
       <FloatingWhatsApp />
+      <LeadFormModal />
     </div>
   );
 }

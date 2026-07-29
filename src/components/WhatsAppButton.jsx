@@ -1,25 +1,32 @@
 import React from 'react';
 import Button from './Button';
 import Icon from './Icon';
-import { WHATSAPP_CONFIG } from '../constants/contact';
+import { useLeadForm } from '../context/LeadFormContext';
 
-const WhatsAppButton = ({ 
-  text, 
+const WhatsAppButton = ({
+  text,
   variant,
-  outline = false, 
-  size = "md", 
-  icon = false, 
+  outline = false,
+  size = "md",
+  icon = false,
   pulse = false,
-  href = WHATSAPP_CONFIG.link(),
   className = "",
-  ariaLabel
+  ariaLabel,
+  onClick,
 }) => {
+  const { openLeadForm } = useLeadForm();
+
+  const handleClick = (e) => {
+    openLeadForm();
+    if (onClick) onClick(e);
+  };
+
   return (
-    <Button 
+    <Button
       variant={variant || (outline ? 'outline' : 'primary')}
       size={size}
       pulse={pulse}
-      href={href}
+      onClick={handleClick}
       className={className}
       aria-label={ariaLabel || text}
     >
