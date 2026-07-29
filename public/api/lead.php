@@ -132,8 +132,8 @@ curl_setopt_array($ch, [
     CURLOPT_POST => true,
     CURLOPT_POSTFIELDS => json_encode($forwardPayload, JSON_UNESCAPED_UNICODE),
     CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
-    CURLOPT_CONNECTTIMEOUT => 3,
-    CURLOPT_TIMEOUT => 5,
+    CURLOPT_CONNECTTIMEOUT => 5,
+    CURLOPT_TIMEOUT => 10,
     CURLOPT_RETURNTRANSFER => true,
 ]);
 $forwardResult = curl_exec($ch);
