@@ -40,3 +40,7 @@ wordpress-backup/
 
 # Briefings de conteúdo / material de referência (não versionar)
 docs/
+
+# Credenciais reais do endpoint de captura de lead (DB da hospedagem) — nunca versionar.
+# Só o template (config.example.php) vai para o git.
+public/api/config.php
