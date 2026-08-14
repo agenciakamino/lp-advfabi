@@ -4,7 +4,7 @@ Landing page de **Dra. Fabiana Golembiewski**, advogada especialista em **Direit
 
 ## O que é este projeto
 
-Página única (one-page) de conversão, com 8 seções. Todo CTA abre um **formulário de qualificação** (modal de 6 passos) e, ao terminar, leva a pessoa para o **WhatsApp** com as respostas já preenchidas na mensagem. Estrutura:
+Página única (one-page) de conversão, com 8 seções, todas levando para contato via **WhatsApp** (não há formulário/backend). Estrutura:
 
 1. **Hero** — negativa de cirurgia / direito garantido
 2. **Transformação** — 3 quadros clicáveis (abrem modal): Ecossistema de Saúde, Início da Mudança, Cirurgias Reparadoras
@@ -22,57 +22,8 @@ Página única (one-page) de conversão, com 8 seções. Todo CTA abre um **form
 - **Tailwind CSS 3** — toda a estilização via utilitários (tokens em `tailwind.config.js`)
 - **GSAP + ScrollTrigger** — animações de scroll (carregado dinamicamente em `App.jsx`)
 - **@studio-freight/lenis** — smooth scroll
-- **Deploy:** GitHub Pages via `gh-pages -d dist` (`npm run deploy`). Em produção o site roda na **hospedagem (FTP)**, porque o endpoint PHP de captura precisa de servidor — o Pages só serve estático.
-- **Backend mínimo:** `public/api/lead.php` (mesma origem, sem CORS) grava o lead no MySQL da hospedagem e repassa pra automação da Kamino.
-
-## Captura de lead (formulário → WhatsApp → planilha)
-
-Fluxo, na ordem:
-
-1. `src/constants/contact.js` → `LEAD_FORM_STEPS` define as perguntas (fonte da verdade). Hoje: plano de saúde, tipo de emagrecimento, peso anterior, peso atual, tempo no mesmo peso e **WhatsApp** (`telefone`, com máscara `(47) 99999-9999` — helpers `maskPhone`/`isValidPhone`/`phoneDigits` no mesmo arquivo).
-2. `src/components/LeadFormModal.jsx` conduz os passos. Steps `choice` avançam no clique; `text` e `tel` avançam no botão/Enter (`tel` só libera com 10+ dígitos).
-3. No último passo: `sendLeadToSheets()` (`src/constants/leadCapture.js`) dispara um POST fire-and-forget para `/api/lead.php` e o WhatsApp abre na sequência — **falha de rede nunca pode bloquear a abertura do wa.me**.
-4. `public/api/lead.php` grava na tabela `leads` (MySQL da hospedagem) e repassa pro webhook `lead-capture-sheets` da Kamino, que escreve a linha na planilha Google. Repasse é best-effort: se a automação cair, o lead já está no banco (`synced_to_sheets = 0`).
-
-- Schema: `database/schema.sql` (base) + `database/migrations/*.sql` (alterações em tabela que já tem dados em produção — rodar no phpMyAdmin).
-- Credenciais reais ficam em `public/api/config.php`, **só no servidor** (fora do git; template em `config.example.php`). Nunca apagar esse arquivo ao subir um build novo por FTP.
-- **Ao adicionar/renomear um campo do formulário**, três lugares precisam acompanhar: a coluna no MySQL (migration), o `INSERT` do `lead.php`, e o `field_labels` da flow instance no dashboard da Kamino (`automacoes-dash.agenciakamino.com.br`) — sem o rótulo, a automação cria uma coluna nova com o nome cru da key em vez de preencher a coluna existente.
-
-### Quando "a planilha parou de receber lead"
-
-O sintoma engana: **o site continua funcionando perfeitamente**. O formulário abre, o
-lead é gravado no MySQL e o WhatsApp abre normal — o repasse pra automação é
-best-effort e falha em silêncio. Em 07/08/2026 o engine das automações ficou 7 dias
-fora do ar e ninguém percebeu por isso.
-
-Diagnóstico, nessa ordem:
-
-```bash
-# 1. A automação está de pé?
-curl -s https://automacoes.agenciakamino.com.br/health | head -c 200   # espera {"ok":true,...}
-ssh vps-kamino "sudo docker service ls | grep automacoes"              # engine em 0/1 = é isso
-
-# 2. Quantos leads ficaram presos? (phpMyAdmin, banco fabi9985_leads)
-#    SELECT id, created_at, telefone, synced_to_sheets FROM leads WHERE synced_to_sheets = 0;
-```
-
-**Recuperar lead preso** (não gera linha duplicada — o flow deduplica por `token`):
-
-```bash
-curl -X POST https://automacoes.agenciakamino.com.br/webhook/fabi-lead-capture \
-  -H 'Content-Type: application/json' \
-  -d '{"auth":"<webhook_secret>","token":"<token do banco>","fields":{...},"page_url":"...","created_at":"<ISO UTC>"}'
-```
-
-Depois marcar `UPDATE leads SET synced_to_sheets = 1 WHERE id = <id>;`.
-
-Desde 14/08/2026 existe um watchdog (systemd timer na vps-kamino, a cada 5 min) que
-religa sozinho qualquer serviço caído — o cenário de 7 dias não deve mais se repetir.
-Detalhes e postmortem: `docs/postmortem-engine-7-dias-2026-08-14.md` no repo
-`kamino-automacoes`.
-
-> Atenção ao fuso: o MySQL da hospedagem grava `created_at` em **horário de Brasília**;
-> o Postgres da automação grava em **UTC**. Uma diferença de 3h entre os dois não é bug.
+- **Deploy:** GitHub Pages via `gh-pages -d dist` (`npm run deploy`)
+- Sem backend — toda conversão é via link `wa.me` (`src/constants/contact.js`)
 
 ## Estrutura de arquivos
 
@@ -90,13 +41,9 @@ fabi-adv/
 │   │   ├── MethodStep.jsx      # Passo do método (seção 5)
 │   │   ├── ReviewCard.jsx      # Card de depoimento
 │   │   ├── FAQItem.jsx         # Item de acordeão do FAQ
-│   │   ├── Modal.jsx           # Modal genérico (bio + etapas da jornada)
-│   │   └── LeadFormModal.jsx   # Formulário de qualificação (6 passos) antes do WhatsApp
-│   ├── context/
-│   │   └── LeadFormContext.jsx # Abre/fecha o formulário a partir de qualquer CTA
+│   │   └── Modal.jsx           # Modal genérico (bio + etapas da jornada)
 │   ├── constants/
-│   │   ├── contact.js          # WHATSAPP_CONFIG, LEAD_FORM_STEPS, máscara de telefone
-│   │   └── leadCapture.js      # POST fire-and-forget para /api/lead.php
+│   │   └── contact.js          # WHATSAPP_CONFIG (telefone, mensagem padrão, link)
 │   ├── styles/
 │   │   └── index.css           # CSS global + diretivas Tailwind
 │   └── assets/                 # Imagens IMPORTADAS (hasheadas pelo Vite no build)
@@ -107,13 +54,7 @@ fabi-adv/
 │   ├── og-image.jpg                    # Open Graph
 │   ├── favicon.ico / favicon-16/32.png / apple-touch-icon.png
 │   ├── fonts/                          # Fontes self-hosted (Playfair Display, Inter) + preload no index.html
-│   ├── api/
-│   │   ├── lead.php                    # Endpoint de captura (MySQL + repasse pra automação)
-│   │   └── config.example.php          # Template das credenciais (config.php real só no servidor)
 │   ├── robots.txt / sitemap.xml / .htaccess / .nojekyll
-├── database/
-│   ├── schema.sql              # CREATE TABLE leads (rodar uma vez num banco novo)
-│   └── migrations/             # ALTERs para o banco que já está em produção
 ├── tailwind.config.js          # Tokens de design (cores brand, fontes)
 ├── vite.config.js              # Vite + plugin-react + alias preact/compat
 └── docs/                       # Briefings de conteúdo (.docx) — fora do git (.gitignore)

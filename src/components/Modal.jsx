@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Icon from './Icon';
 
-const Modal = ({ isOpen, onClose, children }) => {
+const Modal = ({ isOpen, onClose, children, contentClassName = "max-w-4xl" }) => {
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === 'Escape') onClose();
@@ -24,7 +24,7 @@ const Modal = ({ isOpen, onClose, children }) => {
         className="absolute inset-0" 
         onClick={onClose}
       ></div>
-      <div className="relative max-w-4xl w-full max-h-[90vh] bg-white rounded-2xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300 flex flex-col">
+      <div className={`relative w-full max-h-[90vh] bg-white rounded-2xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300 flex flex-col ${contentClassName}`}>
         <button 
           onClick={onClose}
           className="absolute top-4 right-4 p-2 bg-black/5 hover:bg-black/10 rounded-full transition-colors z-50"

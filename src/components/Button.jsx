@@ -1,12 +1,14 @@
 import React from 'react';
 
-const Button = ({ 
-  children, 
-  variant = 'primary', 
-  size = 'md', 
-  className = '', 
+const Button = ({
+  children,
+  variant = 'primary',
+  size = 'md',
+  className = '',
   pulse = false,
-  ...props 
+  href,
+  onClick,
+  ...props
 }) => {
   const baseStyles = "inline-flex items-center justify-center gap-2 font-bold rounded-full transition-all duration-300 w-full sm:w-auto text-center relative overflow-hidden";
   
@@ -29,9 +31,21 @@ const Button = ({
     </span>
   );
 
+  const sharedClassName = `${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`;
+
+  if (onClick) {
+    return (
+      <button type="button" className={sharedClassName} onClick={onClick} {...props}>
+        {pulseElement}
+        {children}
+      </button>
+    );
+  }
+
   return (
-    <a 
-      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
+    <a
+      href={href}
+      className={sharedClassName}
       target="_blank"
       rel="noopener noreferrer"
       {...props}

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Icon from './Icon';
-import { WHATSAPP_CONFIG } from '../constants/contact';
+import { useLeadForm } from '../context/LeadFormContext';
 
-const FloatingWhatsApp = ({ phoneNumber = WHATSAPP_CONFIG.phoneNumber, message = WHATSAPP_CONFIG.defaultMessage }) => {
+const FloatingWhatsApp = () => {
+  const { openLeadForm } = useLeadForm();
   const [isVisible, setIsVisible] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -44,8 +45,6 @@ const FloatingWhatsApp = ({ phoneNumber = WHATSAPP_CONFIG.phoneNumber, message =
     };
   }, []);
 
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
   return (
     <div
       className={`fixed bottom-6 right-6 z-[99] flex flex-col items-end transition-all duration-500 transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'}`}
@@ -59,10 +58,9 @@ const FloatingWhatsApp = ({ phoneNumber = WHATSAPP_CONFIG.phoneNumber, message =
       </div>
 
       {/* Floating Button */}
-      <a
-        href={whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+      <button
+        type="button"
+        onClick={openLeadForm}
         className="relative group"
         aria-label="Falar pelo WhatsApp"
       >
@@ -70,7 +68,7 @@ const FloatingWhatsApp = ({ phoneNumber = WHATSAPP_CONFIG.phoneNumber, message =
           <Icon name="MessageCircle" size={32} fill="currentColor" />
           <span className="absolute top-0 right-0 w-3 h-3 bg-brand-accent border-2 border-white rounded-full"></span>
         </div>
-      </a>
+      </button>
     </div>
   );
 };
