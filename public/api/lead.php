@@ -60,6 +60,20 @@ $emagrecimento = $str($fields['emagrecimento'] ?? null);
 $pesoAnterior = $str($fields['pesoAnterior'] ?? null);
 $pesoAtual = $str($fields['pesoAtual'] ?? null);
 $tempoMesmoPeso = $str($fields['tempoMesmoPeso'] ?? null);
+$telefone = $str($fields['telefone'] ?? null);
+
+// Normaliza o telefone para E.164 sem "+" (ex: "(47) 99999-9999" → "5547999999999"),
+// pronto para wa.me / discagem / hash de CAPI. Só aceita 10 ou 11 dígitos (DDD +
+// fixo ou celular); qualquer coisa fora disso fica NULL em vez de virar lixo.
+$telefoneE164 = null;
+if ($telefone !== null) {
+    $digits = preg_replace('/\D/', '', $telefone);
+    if (strlen($digits) === 10 || strlen($digits) === 11) {
+        $telefoneE164 = '55' . $digits;
+    } elseif ((strlen($digits) === 12 || strlen($digits) === 13) && substr($digits, 0, 2) === '55') {
+        $telefoneE164 = $digits;
+    }
+}
 
 $utmSource = $str($payload['utm_source'] ?? null);
 $utmMedium = $str($payload['utm_medium'] ?? null);
@@ -87,9 +101,11 @@ try {
     $stmt = $pdo->prepare(
         'INSERT INTO leads
             (token, plano, emagrecimento, peso_anterior, peso_atual, tempo_mesmo_peso,
+             telefone, telefone_e164,
              utm_source, utm_medium, utm_campaign, page_url, raw_payload, ip_address)
          VALUES
             (:token, :plano, :emagrecimento, :peso_anterior, :peso_atual, :tempo_mesmo_peso,
+             :telefone, :telefone_e164,
              :utm_source, :utm_medium, :utm_campaign, :page_url, :raw_payload, :ip_address)'
     );
     $stmt->execute([
@@ -99,6 +115,8 @@ try {
         ':peso_anterior' => $pesoAnterior,
         ':peso_atual' => $pesoAtual,
         ':tempo_mesmo_peso' => $tempoMesmoPeso,
+        ':telefone' => $telefone,
+        ':telefone_e164' => $telefoneE164,
         ':utm_source' => $utmSource,
         ':utm_medium' => $utmMedium,
         ':utm_campaign' => $utmCampaign,

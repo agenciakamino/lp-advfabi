@@ -20,6 +20,13 @@ CREATE TABLE IF NOT EXISTS leads (
   peso_atual        VARCHAR(50)  NULL,
   tempo_mesmo_peso  VARCHAR(100) NULL,
 
+  -- WhatsApp informado no último passo do formulário.
+  -- `telefone` guarda como a pessoa digitou (mascarado: "(47) 99999-9999");
+  -- `telefone_e164` é o mesmo número normalizado pelo lead.php ("5547999999999"),
+  -- pronto para wa.me, discagem e hash de CAPI.
+  telefone          VARCHAR(30)  NULL,
+  telefone_e164     VARCHAR(20)  NULL,
+
   -- Atribuição / origem do envio
   utm_source        VARCHAR(255) NULL,
   utm_medium        VARCHAR(255) NULL,
@@ -38,5 +45,6 @@ CREATE TABLE IF NOT EXISTS leads (
   ip_address        VARCHAR(45)  NULL,
 
   UNIQUE KEY uq_leads_token (token),
-  INDEX idx_leads_created_at (created_at)
+  INDEX idx_leads_created_at (created_at),
+  INDEX idx_leads_telefone_e164 (telefone_e164)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

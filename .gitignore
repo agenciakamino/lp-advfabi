@@ -44,3 +44,11 @@ docs/
 # Credenciais reais do endpoint de captura de lead (DB da hospedagem) — nunca versionar.
 # Só o template (config.example.php) vai para o git.
 public/api/config.php
+
+# Zip de build feito à mão para subir por FTP — artefato descartável.
+*.zip
+
+# Registro de estado de sessão de trabalho (rastreabilidade entre sessões).
+# É scratch local: o registro durável vive no CLAUDE.md e no postmortem do repo
+# kamino-automacoes.
+ESTADO-SESSAO.json

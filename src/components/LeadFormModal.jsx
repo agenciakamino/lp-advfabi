@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Modal from './Modal';
 import Icon from './Icon';
 import { useLeadForm } from '../context/LeadFormContext';
-import { WHATSAPP_CONFIG, LEAD_FORM_STEPS, buildLeadMessage } from '../constants/contact';
+import { WHATSAPP_CONFIG, LEAD_FORM_STEPS, buildLeadMessage, maskPhone, isValidPhone } from '../constants/contact';
 import { sendLeadToSheets } from '../constants/leadCapture';
 
 const emptyAnswers = LEAD_FORM_STEPS.reduce((acc, step) => ({ ...acc, [step.key]: '' }), {});
@@ -15,6 +15,8 @@ const LeadFormModal = () => {
   const step = LEAD_FORM_STEPS[stepIndex];
   const isLastStep = stepIndex === LEAD_FORM_STEPS.length - 1;
   const currentValue = answers[step.key];
+  const isInputStep = step.type === 'text' || step.type === 'tel';
+  const canAdvance = step.type === 'tel' ? isValidPhone(currentValue) : currentValue.trim() !== '';
 
   const reset = () => {
     setStepIndex(0);
@@ -45,11 +47,12 @@ const LeadFormModal = () => {
   };
 
   const handleTextChange = (e) => {
-    setAnswers({ ...answers, [step.key]: e.target.value });
+    const value = step.type === 'tel' ? maskPhone(e.target.value) : e.target.value;
+    setAnswers({ ...answers, [step.key]: value });
   };
 
   const handleNext = () => {
-    if (!currentValue.trim()) return;
+    if (!canAdvance) return;
     if (isLastStep) {
       goToWhatsApp(answers);
     } else {
@@ -78,9 +81,12 @@ const LeadFormModal = () => {
         <p className="text-xs font-bold uppercase tracking-widest text-brand-accent mb-3">
           Passo {stepIndex + 1} de {LEAD_FORM_STEPS.length}
         </p>
-        <h3 className="text-2xl md:text-3xl font-serif font-bold text-brand-dark mb-8 leading-snug">
+        <h3 className={`text-2xl md:text-3xl font-serif font-bold text-brand-dark leading-snug ${step.hint ? 'mb-3' : 'mb-8'}`}>
           {step.question}
         </h3>
+        {step.hint && (
+          <p className="text-sm text-brand-muted mb-8 leading-relaxed">{step.hint}</p>
+        )}
 
         {step.type === 'choice' && (
           <div className="flex flex-col gap-3">
@@ -97,7 +103,7 @@ const LeadFormModal = () => {
           </div>
         )}
 
-        {step.type === 'text' && (
+        {isInputStep && (
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -105,7 +111,10 @@ const LeadFormModal = () => {
             }}
           >
             <input
-              type="text"
+              type={step.type === 'tel' ? 'tel' : 'text'}
+              inputMode={step.type === 'tel' ? 'numeric' : undefined}
+              autoComplete={step.type === 'tel' ? 'tel-national' : undefined}
+              maxLength={step.type === 'tel' ? 15 : undefined}
               autoFocus
               value={currentValue}
               onChange={handleTextChange}
@@ -124,7 +133,7 @@ const LeadFormModal = () => {
               )}
               <button
                 type="submit"
-                disabled={!currentValue.trim()}
+                disabled={!canAdvance}
                 className="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-bold bg-brand-accent text-brand-dark hover:bg-brand-hover transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 {isLastStep ? 'Falar com a Dra.' : 'Continuar'}
