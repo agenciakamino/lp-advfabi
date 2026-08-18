@@ -7,7 +7,6 @@ function FAQItem({ question, answer, highlight }) {
   return (
     <div className={`faq-item border rounded-xl bg-white overflow-hidden transition-colors duration-200 ${highlight ? 'border-brand-accent' : 'border-brand-medium/60'}`}>
       <button
-        type="button"
         onClick={() => setIsOpen(!isOpen)}
         aria-expanded={isOpen}
         className="w-full text-left px-6 py-6 flex justify-between items-center gap-4 focus:outline-none hover:bg-brand-light"

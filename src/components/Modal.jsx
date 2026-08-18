@@ -26,7 +26,6 @@ const Modal = ({ isOpen, onClose, children, contentClassName = "max-w-4xl" }) =>
       ></div>
       <div className={`relative w-full max-h-[90vh] bg-white rounded-2xl overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300 flex flex-col ${contentClassName}`}>
         <button
-          type="button"
           onClick={onClose}
           className="absolute top-4 right-4 p-2 bg-black/5 hover:bg-black/10 rounded-full transition-colors z-50"
         >

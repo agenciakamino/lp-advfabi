@@ -247,7 +247,7 @@ function App() {
             />
           </nav>
 
-          <button type="button" className="md:hidden p-2 text-brand-dark" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={isMenuOpen}>
+          <button className="md:hidden p-2 text-brand-dark" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label={isMenuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={isMenuOpen}>
             <Icon name={isMenuOpen ? "X" : "Menu"} size={28} />
           </button>
         </div>
@@ -614,7 +614,6 @@ function App() {
             {/* Navegação do carousel */}
             <div className="flex items-center justify-center gap-6 mb-16">
               <button
-                type="button"
                 onClick={() => changePage(Math.max(0, quotePage - 1))}
                 disabled={quotePage === 0}
                 aria-label="Depoimentos anteriores"
@@ -625,7 +624,6 @@ function App() {
               <div className="flex items-center gap-3" role="tablist" aria-label="Páginas de depoimentos">
                 {Array.from({ length: totalQuotePages }).map((_, i) => (
                   <button
-                    type="button"
                     key={i}
                     onClick={() => changePage(i)}
                     className="p-1 leading-none"
@@ -638,7 +636,6 @@ function App() {
                 ))}
               </div>
               <button
-                type="button"
                 onClick={() => changePage(Math.min(totalQuotePages - 1, quotePage + 1))}
                 disabled={quotePage === totalQuotePages - 1}
                 aria-label="Próximos depoimentos"
