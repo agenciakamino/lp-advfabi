@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from './Button';
 import Icon from './Icon';
-import { useLeadForm } from '../context/LeadFormContext';
+import { WHATSAPP_CONFIG } from '../constants/contact';
 
 const WhatsAppButton = ({
   text,
@@ -14,10 +14,8 @@ const WhatsAppButton = ({
   ariaLabel,
   onClick,
 }) => {
-  const { openLeadForm } = useLeadForm();
-
   const handleClick = (e) => {
-    openLeadForm();
+    window.open(WHATSAPP_CONFIG.link(), '_blank', 'noopener,noreferrer');
     if (onClick) onClick(e);
   };
 

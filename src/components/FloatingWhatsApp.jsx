@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Icon from './Icon';
-import { useLeadForm } from '../context/LeadFormContext';
+import { WHATSAPP_CONFIG } from '../constants/contact';
 
 const FloatingWhatsApp = () => {
-  const { openLeadForm } = useLeadForm();
+  const handleClick = () => {
+    window.open(WHATSAPP_CONFIG.link(), '_blank', 'noopener,noreferrer');
+  };
   const [isVisible, setIsVisible] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
 
@@ -60,7 +62,7 @@ const FloatingWhatsApp = () => {
       {/* Floating Button */}
       <button
         type="button"
-        onClick={openLeadForm}
+        onClick={handleClick}
         className="relative group"
         aria-label="Falar pelo WhatsApp"
       >
