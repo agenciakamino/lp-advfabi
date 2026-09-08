@@ -1,6 +1,6 @@
 {
   "task": "Atualizar site principal com os materiais enviados pela Fabiana",
-  "state": "validated-feedback-2026-09-08",
+  "state": "github-pages-deployed-feedback-2026-09-08",
   "completed": [
     "Leitura de CLAUDE.md e memórias do pivot e dos CTAs",
     "Extração do Institucional.docx e Nosso Serviços.pdf",
@@ -29,7 +29,10 @@
     "Feedback consolidado: distinguir serviços para pacientes e empresas, atualizar FAQ, adotar Pacientes autistas (TEA) e criar espaço para o ecossistema de parceiros",
     "Feedback implementado no frontend: rótulos das duas frentes, FAQ geral de pacientes, termo TEA, seção Ecossistema da saúde e CTA de indicação com mensagem própria",
     "Build de produção, git diff --check, JSON do STATUS e checagem de textos passaram; termo TEA também incluído nas descrições SEO",
-    "Prévia local aberta no navegador embutido do Codex; a abertura ficou enfileirada e não devolveu captura automatizável para inspeção visual"
+    "Prévia local aberta no navegador embutido do Codex; a abertura ficou enfileirada e não devolveu captura automatizável para inspeção visual",
+    "Código publicado em origin/main no commit d83d60f",
+    "GitHub Pages publicado no commit 8b44d0e732dd85c561d6eb9b02034706fd377a59",
+    "URL pública retornou HTTP 200; JavaScript e CSS retornaram HTTP 200; bundle contém Ecossistema da saúde, Pacientes autistas (TEA), nova FAQ e mensagem própria de indicação"
   ],
   "decisions": [
     "Página única geral, preservando a estrutura existente",
@@ -75,11 +78,11 @@
       "Pedidos consolidados e confrontados com o contexto vigente",
       "Alterações de conteúdo e seção de parceiros implementadas",
       "Build e verificações estruturais aprovados",
-      "Prévia aberta no navegador embutido do Codex"
+      "Prévia aberta no navegador embutido do Codex",
+      "Código commitado e enviado ao branch main",
+      "GitHub Pages publicado e verificado por HTTP e conteúdo do bundle"
     ],
-    "pending": [
-      "Commitar, enviar main e publicar/validar GitHub Pages"
-    ],
+    "pending": [],
     "decisions": [
       "Usar Pacientes autistas (TEA), sem travessão",
       "Não inventar nomes ou logos de parceiros ausentes do material",
@@ -87,7 +90,7 @@
       "Não afirmar QA visual automatizado quando a aba embutida não devolveu captura"
     ]
   },
-  "publication": "Homologação publicada e validada em https://agenciakamino.github.io/lp-advfabi/; produção em fabianagolk.com.br permanece intocada",
+  "publication": "Homologação atualizada e validada em https://agenciakamino.github.io/lp-advfabi/ no commit 8b44d0e732dd85c561d6eb9b02034706fd377a59; produção em fabianagolk.com.br permanece intocada",
   "motion": {
     "pending": [],
     "objective": "Mais presença visual e resposta à interação, sem ampliar paleta",
@@ -123,7 +126,7 @@
     "preview": {
       "url": "https://agenciakamino.github.io/lp-advfabi/",
       "branch": "gh-pages",
-      "commit": "10bdbd218dc69b0ceacb17904916323e230a60d7",
+      "commit": "8b44d0e732dd85c561d6eb9b02034706fd377a59",
       "status": "published-and-verified",
       "searchIndexing": "noindex, nofollow; robots.txt disallow all",
       "excluded": [
