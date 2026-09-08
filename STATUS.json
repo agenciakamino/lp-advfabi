@@ -1,0 +1,135 @@
+{
+  "task": "Atualizar site principal com os materiais enviados pela Fabiana",
+  "state": "validated-feedback-2026-09-08",
+  "completed": [
+    "Leitura de CLAUDE.md e memórias do pivot e dos CTAs",
+    "Extração do Institucional.docx e Nosso Serviços.pdf",
+    "Conferido código: WhatsApp direto, sem formulário; AGENTS.md já modificado pelo usuário",
+    "Conferência visual das seis páginas do PDF, incluindo serviços em imagens nas páginas 4 e 5",
+    "Conteúdo de todas as frentes integrado; hero, método, bio, FAQ, contato e SEO atualizados",
+    "Paleta e acabamento CSS aplicados",
+    "Build de produção passou",
+    "Playwright: seis larguras de 320 a 1440 sem overflow; oito CTAs com URL correta; seis serviços e cinco FAQs abrem; menu mobile fecha; nenhum erro JS",
+    "CLAUDE.md consolidado com posicionamento, paleta e fluxo atuais; memória externa permanece sem edição",
+    "Legenda da foto corrigida e imagens finais inspecionadas em desktop/mobile",
+    "Build final aprovado; oito seções, seis grupos de serviços, âncoras válidas, schema e telefone atualizados; teclado e ausência de travessão conferidos",
+    "git diff --check passou; alteração preexistente de AGENTS.md preservada",
+    "Paleta consolidada: removida seção grande em vinho e tom avulso de hover; CSS global usa tokens; hover preserva a família de cor",
+    "Build da paleta consolidada passou; git diff --check passou",
+    "Hero e transição bio/compromisso/FAQ conferidos visualmente no navegador embutido",
+    "Refinamentos de design e movimento documentados em CLAUDE.md e validados no navegador embutido",
+    "Abertura e fechamento suaves validados em execução no navegador embutido: serviço de 30px até 532px, fechamento intermediário de 503px, FAQ com 480ms; controles por teclado e aria-controls preservados",
+    "Cabeçalho e botões desacelerados: 550-650ms; menu mobile 600ms verificado em abertura e fechamento com opacidade intermediária, inert e aria-hidden corretos; build passou; FAQ preservado em 480ms",
+    "Build de homologação preparado para o subdiretório /lp-advfabi/, sem alterar a base do build de produção",
+    "Backend PHP legado e sitemap excluídos da homologação; robots e meta robots configurados para não indexar a prévia",
+    "Homologação publicada no GitHub Pages no commit 10bdbd218dc69b0ceacb17904916323e230a60d7",
+    "URL pública conferida: HTML, JavaScript, CSS, fontes, favicons e imagens principais respondem 200; api/lead.php responde 404",
+    "QA visual no navegador embutido aprovado em desktop e 390x844; menu mobile, expansão de serviço, imagens, ausência de overflow e console sem erros conferidos",
+    "Cinco áudios OGG da Fabiana, enviados em 08/09/2026, transcritos com C:/Users/Matheus/dev/tools/transcrever/transcrever.py",
+    "Feedback consolidado: distinguir serviços para pacientes e empresas, atualizar FAQ, adotar Pacientes autistas (TEA) e criar espaço para o ecossistema de parceiros",
+    "Feedback implementado no frontend: rótulos das duas frentes, FAQ geral de pacientes, termo TEA, seção Ecossistema da saúde e CTA de indicação com mensagem própria",
+    "Build de produção, git diff --check, JSON do STATUS e checagem de textos passaram; termo TEA também incluído nas descrições SEO",
+    "Prévia local aberta no navegador embutido do Codex; a abertura ficou enfileirada e não devolveu captura automatizável para inspeção visual"
+  ],
+  "decisions": [
+    "Página única geral, preservando a estrutura existente",
+    "Institucional é a fonte do posicionamento em duas frentes; adaptar método do PDF ao escopo geral",
+    "Paleta #F5F2EC, #6B1D2A, #C8A46E, #1A355B; manter Playfair Display e Inter",
+    "Hero dividido com retrato existente e tratamento curvo inspirado no card; vinho nos CTAs",
+    "WhatsApp direto com mensagem geral; manter convenção GTM de type=button apenas nos CTAs",
+    "Usar telefone atualizado do PDF: (47) 98920-5601",
+    "Sem mudanças de banco ou deploy nesta etapa",
+    "Validação pelo navegador embutido; sem navegador separado ou Playwright externo",
+    "Off-white e marinho dominantes; vinho apenas em CTAs e detalhes; dourado apenas como acento; neutros auxiliares fixos",
+    "A pedido do usuário, abertura e fechamento de serviços e FAQ mantêm transição de 480ms mesmo em movimento reduzido; efeitos decorativos continuam desativados nesse modo",
+    "Transições de cabeçalho e botões entre 550 e 650ms; menu mobile anima abertura e fechamento sem desmontar, com inert enquanto fechado; manter serviços e FAQ",
+    "GitHub Pages é somente homologação em /lp-advfabi/; o build normal continua usando / e a produção permanece na HostGator"
+  ],
+  "pending": [
+    "Aguardar a aprovação da Fabiana na URL de homologação",
+    "Confirmar acesso e diretório remoto",
+    "Guardar versão atual para rollback",
+    "Subir arquivos estáticos e publicar index.html por último",
+    "Verificar HTTP, hashes e página no navegador embutido"
+  ],
+  "resume": {
+    "cwd": "C:/Users/Matheus/Documents/Projetos/Trabalho/clientes/fabi-adv",
+    "build": "npm run build",
+    "sources": [
+      "C:/Users/Matheus/Downloads/Institucional.docx",
+      "C:/Users/Matheus/Downloads/Nosso Serviços.pdf",
+      "C:/Users/Matheus/AppData/Local/Temp/codex-clipboard-64a747ba-6d05-4a2d-a348-8641f286d5de.png"
+    ],
+    "preview": "npm run preview -- --host 127.0.0.1 --port 4173",
+    "qa": "C:\\Users\\Matheus\\Documents\\Projetos\\Trabalho\\clientes\\fabi-adv\\docs\\qa-pivot-institucional"
+  },
+  "findings": [
+    "CLAUDE.md descreve formulário removido; código e memória confirmam WhatsApp direto",
+    "Memória externa do Claude ainda descreve espera pelos materiais; novo estado está em CLAUDE.md e STATUS.json",
+    "Os áudios não informam nomes, logos ou contatos de parceiros; a seção de ecossistema deve ficar pronta para dados reais sem inventar profissionais"
+  ],
+  "feedback20260908": {
+    "transcripts": "C:/Users/Matheus/Documents/Projetos/Trabalho/clientes/fabi-adv/docs/feedback-fabiana-2026-09-08",
+    "completed": [
+      "Áudios localizados e transcritos",
+      "Pedidos consolidados e confrontados com o contexto vigente",
+      "Alterações de conteúdo e seção de parceiros implementadas",
+      "Build e verificações estruturais aprovados",
+      "Prévia aberta no navegador embutido do Codex"
+    ],
+    "pending": [
+      "Commitar, enviar main e publicar/validar GitHub Pages"
+    ],
+    "decisions": [
+      "Usar Pacientes autistas (TEA), sem travessão",
+      "Não inventar nomes ou logos de parceiros ausentes do material",
+      "Apresentar o ecossistema como rede validada e permitir pedir indicação via WhatsApp",
+      "Não afirmar QA visual automatizado quando a aba embutida não devolveu captura"
+    ]
+  },
+  "publication": "Homologação publicada e validada em https://agenciakamino.github.io/lp-advfabi/; produção em fabianagolk.com.br permanece intocada",
+  "motion": {
+    "pending": [],
+    "objective": "Mais presença visual e resposta à interação, sem ampliar paleta",
+    "design": "Manter Playfair/Inter, off-white/marinho dominantes, vinho nos CTAs e dourado na conexão entre etapas. Hero dividido preservado; método em linha no desktop e leitura vertical no mobile.",
+    "decisions": [
+      "Entrada única da foto e CTA; texto principal sempre visível",
+      "Serviços com indicador expandir/recolher e destaque de foco/abertura",
+      "Linha das cinco etapas animada ao chegar à seção",
+      "FAQ com expansão fluida sem limite arbitrário de altura",
+      "WhatsApp com atenção inicial breve, sem repetição aleatória",
+      "Validar apenas no navegador embutido"
+    ],
+    "completed": [
+      "Revisão do código, estado anterior e aparência atual",
+      "Implementados hero, navegação secundária, indicadores dos serviços, método conectado, expansão do FAQ e WhatsApp sem repetição aleatória",
+      "Build e git diff --check aprovados",
+      "Navegador embutido: hero e serviços conferidos; abrir/recolher por clique e Enter; linha desktop e mobile; menu fecha ao navegar",
+      "Viewport de 320px sem overflow horizontal; FAQ aberto com conteúdo integral e fechado com altura zero; nenhum erro da aplicação no console",
+      "Preferência de movimento reduzido ativa na prévia: animações e transições computadas como desligadas; título com opacidade 1"
+    ],
+    "validationLimit": "Transições de abertura e fechamento agora verificadas em execução, inclusive com movimento reduzido ativo. Efeitos decorativos continuam desativados nesse modo."
+  },
+  "deployment": {
+    "note": "Sem credenciais FTP encontradas nas configurações usuais locais; memória aponta sessão autenticada no portal HostGator",
+    "method": "FTP/cPanel conforme memória",
+    "protectedPaths": [
+      "api/",
+      "api/config.php"
+    ],
+    "root": "/home2/fabi9985/public_html",
+    "host": "br852.hostgator.com.br",
+    "authorization": "Usuário autorizou publicação",
+    "preview": {
+      "url": "https://agenciakamino.github.io/lp-advfabi/",
+      "branch": "gh-pages",
+      "commit": "10bdbd218dc69b0ceacb17904916323e230a60d7",
+      "status": "published-and-verified",
+      "searchIndexing": "noindex, nofollow; robots.txt disallow all",
+      "excluded": [
+        "api/",
+        "sitemap.xml"
+      ]
+    }
+  }
+}

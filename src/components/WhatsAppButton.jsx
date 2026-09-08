@@ -13,9 +13,10 @@ const WhatsAppButton = ({
   className = "",
   ariaLabel,
   onClick,
+  message,
 }) => {
   const handleClick = (e) => {
-    window.open(WHATSAPP_CONFIG.link(), '_blank', 'noopener,noreferrer');
+    window.open(WHATSAPP_CONFIG.link(message), '_blank', 'noopener,noreferrer');
     if (onClick) onClick(e);
   };
 

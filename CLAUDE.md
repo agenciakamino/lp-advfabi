@@ -1,168 +1,124 @@
-# Dra. Fabiana Golembiewski — Landing Page
+# FG Advocacia | Direito da Saúde
 
-Landing page de **Dra. Fabiana Golembiewski**, advogada especialista em **Direito da Saúde**, com foco em reverter negativas de planos de saúde para **cirurgias reparadoras pós-bariátrica**. Sede em Joinville/SC, atendimento para todo o Brasil. Domínio: `fabianagolk.com.br`.
+Site institucional de Dra. Fabiana Golembiewski. Sede em Joinville/SC e atendimento em todo o Brasil. Domínio: `fabianagolk.com.br`.
 
-## O que é este projeto
+## Posicionamento e conteúdo
 
-Página única (one-page) de conversão, com 8 seções. Todo CTA abre um **formulário de qualificação** (modal de 6 passos) e, ao terminar, leva a pessoa para o **WhatsApp** com as respostas já preenchidas na mensagem. Estrutura:
+Página única geral: **proteção jurídica para quem precisa de saúde e para quem cuida dela**. Sem páginas ou entradas de campanha separadas por público. A cirurgia reparadora é um dos serviços, e não o objetivo exclusivo do site.
 
-1. **Hero** — negativa de cirurgia / direito garantido
-2. **Transformação** — 3 quadros clicáveis (abrem modal): Ecossistema de Saúde, Início da Mudança, Cirurgias Reparadoras
-3. **Solução detalhada** (`#direitos`) — cirurgias reparadoras comuns
-4. **Negativas** — desculpas dos planos e por que não se sustentam
-5. **Método** (`#como-funciona`) — 4 passos
-6. **Autoridade** — bio da Dra. (abre modal)
-7. **Histórias Reais** (`#casos`) — carrossel de frases reais de pacientes
-8. **FAQ** — dúvidas frequentes
+Fontes do conteúdo: `Institucional.docx`, `Nosso Serviços.pdf` e card de referência fornecidos pela cliente. Os arquivos originais ficam em Downloads; caminhos e validações constam em `STATUS.json`. As páginas 4 e 5 do PDF são imagens e precisam de inspeção visual: a extração de texto não revela esses serviços.
 
-## Stack
+- Pacientes: pessoas autistas, pacientes com câncer, pessoas obesas e ex-obesas, atletas, pessoas com fibromialgia, pacientes amputados e outras necessidades de saúde. Atendimento relacionado a planos de saúde e SUS.
+- Prestadores: treinamento de equipes, conciliação e análise de glosas, descredenciamento, contratos e reajuste de tabelas de preços para clínicas, empresas e profissionais da saúde.
+- O método do PDF tem cinco etapas. A redação no site abrange o escopo geral, com medidas judiciais e liminar apenas quando cabíveis, sem prometer decisões favoráveis.
+- Não acrescentar serviços com base apenas na ata da reunião; o conteúdo enviado pela cliente é a referência.
+- O aulão discutido na reunião não integra a implementação. Não há conteúdo ou fluxo de inscrição fornecido.
 
-- **React 18** (aliasado para **Preact/compat** no build — bundle menor; ver `vite.config.js`)
-- **Vite 4** como bundler
-- **Tailwind CSS 3** — toda a estilização via utilitários (tokens em `tailwind.config.js`)
-- **GSAP + ScrollTrigger** — animações de scroll (carregado dinamicamente em `App.jsx`)
-- **@studio-freight/lenis** — smooth scroll
-- **Deploy:** GitHub Pages via `gh-pages -d dist` (`npm run deploy`). Em produção o site roda na **hospedagem (FTP)**, porque o endpoint PHP de captura precisa de servidor — o Pages só serve estático.
-- **Backend mínimo:** `public/api/lead.php` (mesma origem, sem CORS) grava o lead no MySQL da hospedagem e repassa pra automação da Kamino.
+Estrutura da página em `src/App.jsx`:
 
-## Captura de lead (formulário → WhatsApp → planilha)
+1. Hero institucional com retrato existente e CTA.
+2. Duas frentes de atuação (`#importancia`).
+3. Serviços para pacientes (`#direitos`), com seis grupos expansíveis.
+4. Assessoria para quem cuida da saúde, com cinco serviços.
+5. Ecossistema da saúde (`#parceiros`), com apresentação da rede e CTA de indicação.
+6. Método de cinco etapas (`#como-funciona`).
+7. Apresentação da Dra. Fabiana (`#sobre`).
+8. Compromisso institucional.
+9. FAQ e contato, seguidos do rodapé.
 
-Fluxo, na ordem:
+`src/constants/content.js` concentra os serviços e as perguntas frequentes. Os depoimentos e modais da versão exclusivamente bariátrica não são renderizados. Componentes antigos podem existir no repositório sem uso.
 
-1. `src/constants/contact.js` → `LEAD_FORM_STEPS` define as perguntas (fonte da verdade). Hoje: plano de saúde, tipo de emagrecimento, peso anterior, peso atual, tempo no mesmo peso e **WhatsApp** (`telefone`, com máscara `(47) 99999-9999` — helpers `maskPhone`/`isValidPhone`/`phoneDigits` no mesmo arquivo).
-2. `src/components/LeadFormModal.jsx` conduz os passos. Steps `choice` avançam no clique; `text` e `tel` avançam no botão/Enter (`tel` só libera com 10+ dígitos).
-3. No último passo: `sendLeadToSheets()` (`src/constants/leadCapture.js`) dispara um POST fire-and-forget para `/api/lead.php` e o WhatsApp abre na sequência — **falha de rede nunca pode bloquear a abertura do wa.me**.
-4. `public/api/lead.php` grava na tabela `leads` (MySQL da hospedagem) e repassa pro webhook `lead-capture-sheets` da Kamino, que escreve a linha na planilha Google. Repasse é best-effort: se a automação cair, o lead já está no banco (`synced_to_sheets = 0`).
+## Stack e comandos
 
-- Schema: `database/schema.sql` (base) + `database/migrations/*.sql` (alterações em tabela que já tem dados em produção — rodar no phpMyAdmin).
-- Credenciais reais ficam em `public/api/config.php`, **só no servidor** (fora do git; template em `config.example.php`). Nunca apagar esse arquivo ao subir um build novo por FTP.
-- **Ao adicionar/renomear um campo do formulário**, três lugares precisam acompanhar: a coluna no MySQL (migration), o `INSERT` do `lead.php`, e o `field_labels` da flow instance no dashboard da Kamino (`automacoes-dash.agenciakamino.com.br`) — sem o rótulo, a automação cria uma coluna nova com o nome cru da key em vez de preencher a coluna existente.
+- React 18 com alias para Preact/compat no build (`vite.config.js`).
+- Vite 4, Tailwind CSS 3 e GSAP/ScrollTrigger para a barra de progresso.
+- `npm install`: dependências.
+- `npm run dev -- --host 127.0.0.1`: prévia local.
+- `npm run build`: gera `dist/`.
+- `npm run preview`: serve o build.
+- `npm run deploy`: publica via gh-pages. **Esse comando não atualiza a hospedagem de produção por FTP.**
 
-### Quando "a planilha parou de receber lead"
+## Identidade visual
 
-O sintoma engana: **o site continua funcionando perfeitamente**. O formulário abre, o
-lead é gravado no MySQL e o WhatsApp abre normal — o repasse pra automação é
-best-effort e falha em silêncio. Em 07/08/2026 o engine das automações ficou 7 dias
-fora do ar e ninguém percebeu por isso.
+Tokens em `tailwind.config.js`. Paleta fornecida pela cliente:
 
-Diagnóstico, nessa ordem:
+| Token | Cor | Uso |
+| --- | --- | --- |
+| `brand-light` | `#F5F2EC` | Off-white e fundos claros |
+| `brand-wine` | `#6B1D2A` | CTAs e destaques em vinho |
+| `brand-accent` | `#C8A46E` | Dourado, bordas e detalhes |
+| `brand-dark` | `#1A355B` | Azul-marinho, títulos e fundos escuros |
 
-```bash
-# 1. A automação está de pé?
-curl -s https://automacoes.agenciakamino.com.br/health | head -c 200   # espera {"ok":true,...}
-ssh vps-kamino "sudo docker service ls | grep automacoes"              # engine em 0/1 = é isso
+`brand-medium`, `brand-muted` e `brand-hover` são tons auxiliares. `brand-amber` é um alias legado para vinho.
 
-# 2. Quantos leads ficaram presos? (phpMyAdmin, banco fabi9985_leads)
-#    SELECT id, created_at, telefone, synced_to_sheets FROM leads WHERE synced_to_sheets = 0;
-```
+Fontes aprovadas: Playfair Display para títulos e Inter para corpo, self-hosted em `public/fonts/` com preload no `index.html`. Manter identidade existente, com a curva da foto inspirada no card da cliente. Não transformar o texto do anúncio de consentimento no título geral do site.
 
-**Recuperar lead preso** (não gera linha duplicada — o flow deduplica por `token`):
+Layout responsivo, foco visível no teclado e respeito a `prefers-reduced-motion`. Nenhum texto voltado ao público deve usar travessão.
 
-```bash
-curl -X POST https://automacoes.agenciakamino.com.br/webhook/fabi-lead-capture \
-  -H 'Content-Type: application/json' \
-  -d '{"auth":"<webhook_secret>","token":"<token do banco>","fields":{...},"page_url":"...","created_at":"<ISO UTC>"}'
-```
+### Consistência de cores
 
-Depois marcar `UPDATE leads SET synced_to_sheets = 1 WHERE id = <id>;`.
+- Off-white e azul-marinho são a base da página. Branco é apenas uma superfície neutra auxiliar.
+- Vinho fica nos CTAs e pequenos destaques. Não usar grandes seções em vinho nem dar uma cor diferente a cada público.
+- Dourado fica em detalhes, bordas e elementos sobre fundo escuro. Não usar dourado para texto pequeno em fundo claro.
+- Reutilizar os tokens de `tailwind.config.js`, inclusive no CSS global. Não introduzir novos hexadecimais, gradientes multicoloridos ou tons diferentes por seção.
+- Estados de hover preservam a cor do componente, variando discretamente a luminosidade ou o preenchimento. Os tons neutros auxiliares existentes ficam fixos.
+- Antes de entregar alterações visuais, conferir consistência da paleta e contraste de texto, botões e seus estados.
 
-Desde 14/08/2026 existe um watchdog (systemd timer na vps-kamino, a cada 5 min) que
-religa sozinho qualquer serviço caído — o cenário de 7 dias não deve mais se repetir.
-Detalhes e postmortem: `docs/postmortem-engine-7-dias-2026-08-14.md` no repo
-`kamino-automacoes`.
+### Navegador para validação
 
-> Atenção ao fuso: o MySQL da hospedagem grava `created_at` em **horário de Brasília**;
-> o Postgres da automação grava em **UTC**. Uma diferença de 3h entre os dois não é bug.
+Usar o navegador embutido do Codex para navegar, inspecionar e validar visualmente o site. Reutilizar a aba existente quando disponível. Não abrir navegador separado nem acionar o MCP ou scripts externos do Playwright para essa validação. Não é necessário instalar Playwright para este projeto. Esta preferência não autoriza desinstalar ferramentas da máquina.
 
-## Estrutura de arquivos
+### Movimento e interação
 
-```
-fabi-adv/
-├── index.html                  # Template HTML + meta tags SEO/OG + preloads (hero, fontes)
-├── src/
-│   ├── main.jsx                # Entry point (monta o App, importa o CSS global)
-│   ├── App.jsx                 # Página inteira (header, 8 seções, modais, footer)
-│   ├── components/             # Componentes reutilizáveis
-│   │   ├── Button.jsx          # Botão base
-│   │   ├── WhatsAppButton.jsx  # CTA padrão (usa contact.js)
-│   │   ├── FloatingWhatsApp.jsx# Botão flutuante fixo
-│   │   ├── Icon.jsx            # Wrapper de ícones (lucide-style, inline SVG)
-│   │   ├── MethodStep.jsx      # Passo do método (seção 5)
-│   │   ├── ReviewCard.jsx      # Card de depoimento
-│   │   ├── FAQItem.jsx         # Item de acordeão do FAQ
-│   │   ├── Modal.jsx           # Modal genérico (bio + etapas da jornada)
-│   │   └── LeadFormModal.jsx   # Formulário de qualificação (6 passos) antes do WhatsApp
-│   ├── context/
-│   │   └── LeadFormContext.jsx # Abre/fecha o formulário a partir de qualquer CTA
-│   ├── constants/
-│   │   ├── contact.js          # WHATSAPP_CONFIG, LEAD_FORM_STEPS, máscara de telefone
-│   │   └── leadCapture.js      # POST fire-and-forget para /api/lead.php
-│   ├── styles/
-│   │   └── index.css           # CSS global + diretivas Tailwind
-│   └── assets/                 # Imagens IMPORTADAS (hasheadas pelo Vite no build)
-│       └── sobre-mim.{jpg,webp}# Foto da Dra. (importada em App.jsx)
-├── public/                     # Estáticos servidos por URL fixa (NÃO passam pelo bundler)
-│   ├── hero.{avif,webp,jpg}            # Hero desktop (referenciado por /hero.* no App)
-│   ├── hero-mobile.{avif,webp,jpg}     # Hero mobile
-│   ├── og-image.jpg                    # Open Graph
-│   ├── favicon.ico / favicon-16/32.png / apple-touch-icon.png
-│   ├── fonts/                          # Fontes self-hosted (Playfair Display, Inter) + preload no index.html
-│   ├── api/
-│   │   ├── lead.php                    # Endpoint de captura (MySQL + repasse pra automação)
-│   │   └── config.example.php          # Template das credenciais (config.php real só no servidor)
-│   ├── robots.txt / sitemap.xml / .htaccess / .nojekyll
-├── database/
-│   ├── schema.sql              # CREATE TABLE leads (rodar uma vez num banco novo)
-│   └── migrations/             # ALTERs para o banco que já está em produção
-├── tailwind.config.js          # Tokens de design (cores brand, fontes)
-├── vite.config.js              # Vite + plugin-react + alias preact/compat
-└── docs/                       # Briefings de conteúdo (.docx) — fora do git (.gitignore)
-```
+- Foto do hero com acomodação de escala em 1,4 s, uma vez; CTA com entrada curta. O título permanece visível desde o início.
+- Link secundário no hero leva à apresentação do escritório. Menu e botões respondem a hover e foco sem mudar a paleta.
+- Cabeçalho e botões usam transições de 550 a 650 ms. O menu mobile abre e fecha em 600 ms e permanece montado durante a transição; fechado, usa `inert` e `aria-hidden`. As transições de cor e opacidade continuam suaves em movimento reduzido, por solicitação do gestor; deslocamentos decorativos permanecem desligados.
+- Serviços usam `ServiceDetails.jsx`, com botão acessível, indicador de mais/menos e rótulo de recolhimento. O card aberto recebe destaque discreto. A expansão por grid permite animar abertura e fechamento.
+- Método: conexão horizontal no desktop e vertical no mobile. Um IntersectionObserver aciona o destaque uma vez; nenhum texto depende da animação para aparecer.
+- FAQ usa expansão por grid, sem altura máxima fixa, e seta rotativa. Manter a operação por teclado e `aria-expanded`.
+- WhatsApp flutuante tem apenas dois pulsos iniciais e tooltip em hover/foco. Não voltar a mensagens aleatórias ou movimento infinito.
+- Respeitar `prefers-reduced-motion` nos efeitos decorativos: zoom, pulsos e movimentos de entrada ficam desligados. Por solicitação do gestor, serviços e FAQ preservam transição de altura de 480 ms e opacidade de 400 ms também nesse modo. As exceções são locais aos painéis e às interações de cabeçalho e botões; não alterar a configuração da máquina nem liberar efeitos decorativos globalmente.
 
-### Convenção de imagens (importante)
+### Imagens
 
-- **`src/assets/`** → imagens **importadas** no JSX (`import x from './assets/...'`). O Vite faz hash e otimiza. Usar para imagens cujo cache-busting importa (ex: `sobre-mim`).
-- **`public/`** → imagens referenciadas por **URL absoluta** (`/hero.jpg`). Não passam pelo bundler, mantêm o nome. Usar para o que precisa de URL estável — caso do **hero**, que é pré-carregado (`<link rel="preload">`) no `index.html`.
+- `src/assets/`: imagens importadas no JSX e hasheadas pelo Vite, como a foto da bio e a marca FG.
+- `public/`: imagens por URL estável, incluindo hero desktop/mobile, OG e favicons. O preload do hero no `index.html` deve acompanhar o `<picture>`.
+- Preservar retratos reais existentes. O card enviado é uma referência de composição e cores.
 
-Os dois padrões coexistem de propósito; não consolidar tudo num lugar só.
+## WhatsApp e rastreamento
 
-## Design / Tokens
+Todo CTA abre o WhatsApp diretamente. **Não há formulário, captura de lead, POST ou integração de planilha no frontend.**
 
-Definidos em `tailwind.config.js` (`theme.extend`):
+- Fonte da verdade: `src/constants/contact.js`, `WHATSAPP_CONFIG`.
+- WhatsApp e telefone do PDF: `5547989205601`, (47) 98920-5601. O número anterior no código não tinha o nono dígito.
+- Mensagem geral inclui "Vim pelo site" e atendimento em Direito da Saúde. Não restringir a mensagem a cirurgia reparadora.
+- O CTA do ecossistema usa mensagem própria para pedir indicação de profissional parceiro.
+- `WhatsAppButton` e `FloatingWhatsApp` usam `window.open` com `noopener,noreferrer`.
+- GTM: `GTM-W2ZR8KLC`. O gatilho externo de conversão usa `type="button"` como indicador de lead. **Somente CTAs de WhatsApp devem ter esse atributo.** Menu, FAQ e botões de expansão dos serviços não devem receber `type="button"`.
+- Não reintroduzir formulário ou qualificação sem pedido do gestor.
 
-| Token | Hex | Uso |
-|-------|-----|-----|
-| `brand-light` | `#F7F4EF` | fundo claro |
-| `brand-medium` | `#DDD0BB` | bordas suaves |
-| `brand-muted` | `#6B6057` | texto secundário |
-| `brand-dark` | `#1A2B3C` | navy — fundos escuros, texto forte |
-| `brand-accent` | `#C9A052` | dourado — CTAs, destaques |
-| `brand-amber` | `#A57626` | dourado mais escuro — itálicos de destaque |
-| `brand-hover` | `#D8B262` | hover do accent |
+## Hospedagem e backend legado
 
-- **Fontes:** `Playfair Display` (serif, títulos) + `Inter` (sans, corpo) — self-hosted em `public/fonts/`, com `<link rel="preload">` no `index.html`.
-- Mobile-first, animações de entrada via GSAP ScrollTrigger.
+Produção usa hospedagem com FTP/cPanel. Subir `index.html` e os assets do mesmo build juntos, pois um HTML apontando para hashes ausentes derruba o site. Verificar a página pública e as respostas dos bundles após publicar. Não afirmar que uma alteração local está em produção.
 
-> ⚠️ Nota: as regras globais de frontend desaconselham `Inter` como fonte padrão. Trocar por algo como Plus Jakarta Sans/DM Sans é um ajuste de design pendente (não estrutural) — só fazer com aval do cliente, pois muda a identidade já aprovada.
+`public/api/lead.php`, `public/api/config.example.php`, `database/schema.sql` e `database/migrations/` pertencem ao fluxo antigo e continuam intactos. O frontend não os chama. Não excluir nem reativar essa infraestrutura como parte de alterações na página.
 
-## Comandos
+- `public/api/config.php` contém credenciais reais apenas no servidor, fora do git. Nunca apagar ou sobrescrever esse arquivo no deploy.
+- O fluxo legado gravava MySQL e repassava para a automação da Kamino, que escrevia na planilha. Falha no repasse não bloqueava o WhatsApp.
+- Os registros antigos não sincronizados usam `synced_to_sheets = 0`. A automação deduplicava por `token`.
+- MySQL da hospedagem registra horário de Brasília; Postgres da automação usa UTC.
+- Mudanças em banco exigem a validação, banco de teste e backup definidos nas regras globais. Não executar escrita ou migration durante ajustes de conteúdo do site.
+- Diagnóstico histórico detalhado permanece na memória do Claude, nos tópicos de captura de lead e deploy FTP, e no postmortem do repositório `kamino-automacoes`.
 
-```bash
-npm install      # instala dependências
-npm run dev      # servidor de desenvolvimento (Vite + HMR)
-npm run build    # build de produção em dist/
-npm run preview  # serve o build localmente
-npm run deploy   # build + publica em gh-pages (GitHub Pages)
-```
+## Dados do escritório
 
-## Contato / dados do cliente
+- Dra. Fabiana Golembiewski, OAB/SC 67.289.
+- E-mail: `fabiana.golk@hotmail.com`.
+- Instagram: `@fabianagolembiewski` e `@fgadvocaciaintegrada`.
+- Edifício Empresarial Everest, R. Dona Francisca, 1.113, sala 707, Saguaçu, Joinville/SC, CEP 89221-006.
 
-- **WhatsApp:** `554789205601` (config em `src/constants/contact.js`)
-- **Telefone:** (47) 8920-5601 · **E-mail:** fabiana.golk@hotmail.com
-- **Instagram:** [@fabianagolembiewski](https://instagram.com/fabianagolembiewski) · [@fgadvocaciaintegrada](https://instagram.com/fgadvocaciaintegrada)
-- **Endereço:** R. Dona Francisca, 1.113 - Sala 707, Saguaçu, Joinville - SC, 89221-006
+## Continuidade
 
-## Notas
+Leia `STATUS.json` e o índice de memória do Claude antes de retomar uma mudança em andamento. Confirme o estado real do código e da hospedagem antes de agir. A memória externa pode ainda descrever o site anterior ou a espera pelos materiais.
 
-- `wordpress-backup/` é um snapshot do site WordPress antigo em produção — ignorado pelo git, mantido só para referência de migração.
-- `docs/` guarda os briefings de conteúdo (`.docx`) — fora do git.
+`docs/` armazena briefings locais fora do git; `wordpress-backup/` é referência histórica ignorada pelo git. Não editar `AGENTS.md`: ele apenas aponta para este documento.
